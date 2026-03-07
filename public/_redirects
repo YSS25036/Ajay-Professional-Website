@@ -1,0 +1,2 @@
+# Redirect old WordPress URLs to new structure (add as needed)
+# /blog/*  /blog/:splat  200

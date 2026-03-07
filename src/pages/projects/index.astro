@@ -1,0 +1,162 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const projectTiles = [
+	{
+		title: 'Key Projects',
+		description: 'Case studies and consulting engagements across CyberSecurity, EHR, e-commerce, and more. See how I help organizations scale and integrate.',
+		href: '/projects/key-projects/',
+		image: '/images/ongoing-comp-image.png',
+	},
+	{
+		title: 'Workflow',
+		description: 'How I approach engagements—Discovery, Planning, Execution, and Review. A structured process tailored to your needs.',
+		href: '/projects/workflow/',
+		image: '/images/WF-copy.png',
+	},
+	{
+		title: 'Commercials',
+		description: 'Flexible engagement models: Fixed Fee, Monthly Retainer, or Hourly. Choose what fits your situation.',
+		href: '/projects/commercials/',
+		image: '/images/Commercials-copy.png',
+	},
+];
+---
+
+<BaseLayout title="Projects" description="Key projects, workflow, and commercials by Ajay K Madan.">
+	<Header />
+	<main class="main">
+		<h1>Projects</h1>
+		<p class="intro">Explore my consulting approach, case studies, and engagement models.</p>
+
+		<div class="projects-overview">
+			<p>I help organizations scale technology, integrate teams after M&A, and build sustainable engineering practices. Below you can dive into my key case studies, understand how I structure engagements, and see how commercials work.</p>
+		</div>
+
+		<div class="project-tiles">
+			{projectTiles.map((tile) => (
+				<a href={tile.href} class="project-tile">
+					<img src={tile.image} alt={tile.title} class="tile-img" />
+					<div class="tile-content">
+						<h2 class="tile-title">{tile.title}</h2>
+						<p class="tile-description">{tile.description}</p>
+						<span class="tile-cta">Learn more →</span>
+					</div>
+				</a>
+			))}
+		</div>
+
+		<section class="cta-section">
+			<p class="cta-text">Ready to discuss your technology leadership needs?</p>
+			<a href="/contact/?type=consultation" class="cta-button">Schedule a Free Consultation</a>
+		</section>
+	</main>
+	<Footer />
+</BaseLayout>
+
+<style>
+	.main {
+		max-width: 1000px;
+		margin: 0 auto;
+		padding: 8rem 1.5rem 4rem;
+	}
+	.main h1 {
+		font-size: 2.5rem;
+		margin-bottom: 0.5rem;
+		color: #1a1a1a;
+	}
+	.intro {
+		font-size: 1.15rem;
+		color: #555;
+		line-height: 1.6;
+		margin-bottom: 1.5rem;
+	}
+	.projects-overview {
+		background: #f8f9fa;
+		border-radius: 8px;
+		padding: 1.5rem 1.75rem;
+		margin-bottom: 2.5rem;
+		border-left: 4px solid #e67e22;
+	}
+	.projects-overview p {
+		margin: 0;
+		font-size: 1.05rem;
+		line-height: 1.7;
+		color: #444;
+	}
+	.project-tiles {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 2rem;
+	}
+	.project-tile {
+		display: block;
+		background: #f8f9fa;
+		border-radius: 12px;
+		overflow: hidden;
+		text-decoration: none;
+		color: inherit;
+		border: 1px solid #e0e0e0;
+		transition: box-shadow 0.2s, transform 0.2s;
+	}
+	.project-tile:hover {
+		box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+		transform: translateY(-2px);
+	}
+	.tile-img {
+		width: 100%;
+		height: 200px;
+		object-fit: cover;
+	}
+	.tile-content {
+		padding: 1.5rem;
+	}
+	.tile-title {
+		font-size: 1.5rem;
+		font-weight: 600;
+		color: #e67e22;
+		margin: 0 0 0.75rem;
+	}
+	.tile-description {
+		font-size: 1rem;
+		line-height: 1.6;
+		color: #555;
+		margin: 0 0 1rem;
+	}
+	.tile-cta {
+		font-size: 0.95rem;
+		font-weight: 600;
+		color: #e67e22;
+	}
+	.project-tile:hover .tile-cta {
+		text-decoration: underline;
+	}
+	.cta-section {
+		margin-top: 3rem;
+		padding: 2rem;
+		text-align: center;
+		background: linear-gradient(135deg, #fef9f5 0%, #f8f9fa 100%);
+		border-radius: 12px;
+		border: 1px solid #e8e8e8;
+	}
+	.cta-section .cta-text {
+		font-size: 1.15rem;
+		color: #333;
+		margin: 0 0 1rem;
+	}
+	.cta-section .cta-button {
+		display: inline-block;
+		background: #e67e22;
+		color: white;
+		text-decoration: none;
+		padding: 0.9rem 2rem;
+		border-radius: 8px;
+		font-weight: 600;
+		font-size: 1.05rem;
+	}
+	.cta-section .cta-button:hover {
+		background: #d35400;
+	}
+</style>

@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ContactForm from '../components/ContactForm.astro';
+---
+
+<BaseLayout title="Contact" description="Get in touch with Ajay K Madan. Schedule a free consultation or send a message.">
+	<Header />
+	<main class="main">
+		<h1>Contact</h1>
+		<p>Schedule a free consultation or write to me. I'll get back to you soon.</p>
+		<ContactForm />
+	</main>
+	<Footer />
+</BaseLayout>
+
+<style>
+	.main {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 8rem 1.5rem 4rem;
+	}
+	.main h1 {
+		font-size: 2rem;
+		margin-bottom: 0.5rem;
+	}
+	.main > p {
+		margin-bottom: 1rem;
+		color: #666;
+	}
+</style>

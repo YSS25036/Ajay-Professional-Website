@@ -1,0 +1,60 @@
+---
+import testimonials from '../data/testimonials.json';
+const testimonial = testimonials[0];
+---
+
+{testimonial && (
+	<section class="testimonial" aria-label="Testimonial">
+		<div class="testimonial-content">
+			{testimonial.image && (
+				<img src={testimonial.image} alt={testimonial.author} class="testimonial-avatar" width="80" height="80" />
+			)}
+			<div>
+				<blockquote class="quote">"{testimonial.quote}"</blockquote>
+				<cite class="author">
+					<strong>{testimonial.author}</strong>
+					<span class="role">{testimonial.role}</span>
+				</cite>
+			</div>
+		</div>
+	</section>
+)}
+
+<style>
+	.testimonial {
+		background: #f8f9fa;
+		border-left: 4px solid #e67e22;
+		padding: 2rem;
+		margin: 3rem 0;
+		border-radius: 0 8px 8px 0;
+	}
+	.testimonial-content {
+		display: flex;
+		gap: 1.5rem;
+		align-items: flex-start;
+	}
+	.testimonial-avatar {
+		border-radius: 50%;
+		object-fit: cover;
+		flex-shrink: 0;
+	}
+	.quote {
+		font-size: 1.125rem;
+		line-height: 1.6;
+		margin: 0 0 1rem 0;
+		color: #333;
+		font-style: italic;
+	}
+	.author {
+		display: block;
+		font-style: normal;
+	}
+	.author strong {
+		display: block;
+		color: #333;
+	}
+	.role {
+		font-size: 0.9rem;
+		color: #666;
+	}
+</style>

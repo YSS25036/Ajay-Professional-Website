@@ -1,0 +1,100 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const feeTypes = [
+	{
+		title: 'Fixed Fee',
+		bold: 'Outcome based payment',
+		content: 'Fixed fee project and payment linked to outcomes achieved, with a stage wise completion for payment disbursal. This model works best when the outcomes are specific and measurable.',
+	},
+	{
+		title: 'Monthly Fee',
+		bold: 'Retainer based payment',
+		content: 'Recurring payment paid on a monthly basis for a fixed block of hours. This works best for scenarios like Coaching or Advising, Fractional CTO, or anything that needs an ongoing engagement with the company.',
+	},
+	{
+		title: 'Hourly Fee',
+		bold: 'Pay by hour',
+		content: 'Ideal for very short assignments that need less than 5 hours of time. Quite uncommon, but works for very specific & targeted outcomes.',
+	},
+];
+---
+
+<BaseLayout title="Commercials" description="How consulting commercials work - Fixed Fee, Monthly Fee, and Hourly Fee options.">
+	<Header />
+	<main class="main">
+		<h1>How Commercials Work</h1>
+		<p class="intro">I offer flexible engagement models to match your needs. Choose the structure that best fits your situation.</p>
+
+		<div class="accordion">
+			{feeTypes.map((item, i) => (
+				<details class="accordion-item" open={i === 0}>
+					<summary>{item.title}</summary>
+					<div class="accordion-content">
+						<p><strong>{item.bold}</strong>: {item.content}</p>
+					</div>
+				</details>
+			))}
+		</div>
+	</main>
+	<Footer />
+</BaseLayout>
+
+<style>
+	.main {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 8rem 1.5rem 4rem;
+	}
+	.main h1 {
+		font-size: 2rem;
+		margin-bottom: 0.5rem;
+	}
+	.intro {
+		color: #555;
+		line-height: 1.6;
+		margin-bottom: 2rem;
+	}
+	.accordion {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+	.accordion-item {
+		border: 1px solid #e0e0e0;
+		border-radius: 8px;
+		overflow: hidden;
+		background: #fafafa;
+	}
+	.accordion-item summary {
+		padding: 1rem 1.25rem;
+		font-weight: 600;
+		cursor: pointer;
+		background: #fff;
+		list-style: none;
+		border-bottom: 1px solid #e0e0e0;
+	}
+	.accordion-item summary::-webkit-details-marker { display: none; }
+	.accordion-item summary::after {
+		content: '+';
+		float: right;
+		font-weight: 400;
+		color: #e67e22;
+	}
+	.accordion-item[open] summary::after {
+		content: '−';
+	}
+	.accordion-content {
+		padding: 1.25rem;
+	}
+	.accordion-content p {
+		margin: 0;
+		line-height: 1.7;
+		color: #444;
+	}
+	.accordion-content :global(strong) {
+		color: #333;
+	}
+</style>

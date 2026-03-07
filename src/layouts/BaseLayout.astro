@@ -1,0 +1,35 @@
+---
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description = "Ajay K Madan - Technology Leadership, AI adoption & change management. 25 yrs building enterprise products. AI SDLC, AI coding tools, technology transformation." } = Astro.props;
+const gaId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/png" href="/images/cropped-Website-Logo-v2-copy.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content={description} />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title} - Ajay K Madan</title>
+		{gaId && (
+			<>
+				<script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
+				<script define:vars={{ gaId }}>
+					window.dataLayer = window.dataLayer || [];
+					function gtag(){dataLayer.push(arguments);}
+					gtag('js', new Date());
+					gtag('config', gaId);
+				</script>
+			</>
+		)}
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>

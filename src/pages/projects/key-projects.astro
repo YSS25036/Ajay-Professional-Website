@@ -1,0 +1,232 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const caseStudies = [
+	{
+		title: 'Design & Architecture Company',
+		summary: 'Helping a Design & Architecture company based in Switzerland transition from their previous technology vendor, establish a capable offshore team, and build a modern technology foundation. Enabled AI adoption with change management and bottoms-up rollout—defined AI SDLC practices, achieved 10x code throughput, and designed a complex taxonomy application using AI-assisted development.',
+		problem: 'The company operates multiple design-focused portals (Design Discovery and Catalog Portals) and needed to transition away from their incumbent vendor to a new offshore partner. The technology platform required modernization: real-time content updates, operational visibility, security hardening, and a path to modern UI frameworks. Foundational project management practices for delivery and innovation also needed to be established.',
+		outcomes: [
+			'Successfully completed vendor transition without major hiccups; full environment now in client\'s control',
+			'Real-time CMS updates: Reduced content update turnaround from 12–24 hours to minutes for Design Discovery and Catalog Portals',
+			'Operational dashboards with real-time health monitoring (CPU, memory, service status) and Teams/email alerts for proactive issue resolution',
+			'AI Proof of Concept: Semantic search PoC for Design Discovery—natural language queries like "Show me chairs for a Hotel Lobby designed by Gio Ponti"',
+			'AI adoption & change management: Enabled bottoms-up adoption of AI coding tools with careful change management; defined AI SDLC practices; code throughput increased 10x',
+			'Designed and built a complex taxonomy application end-to-end—architecture, design, and implementation using AI-assisted development',
+			'CDN implementation with Cloudflare for Design Discovery (performance and security)',
+			'UI automation for anomaly detection; data scraping from partner/brand websites post-migration',
+			'User management strategy: Recommended KeyCloak for Identity management as a foundational component',
+			'Technology roadmap: Next.js migration (page-by-page), common CMS version consolidation across products',
+			'Team scaling: Onboarded additional engineers enabling parallel tracks and reduced single-point dependency',
+		],
+		meta: {
+			geography: 'Switzerland, Europe (offshore team)',
+			orgSize: 'Small',
+			leadership: 'Founder / Leadership',
+			ownership: 'Private',
+			domain: 'Design & Architecture',
+			orgTenure: '—',
+			assignmentTenure: 'Ongoing (8+ months)',
+		},
+	},
+	{
+		title: 'CyberSecurity Organization',
+		summary: 'Successfully executed an assignment with a growth stage CyberSecurity organization to help them scale their product vertical to support high growth in business and the volume of users.',
+		problem: 'The organization has a very successful and growing consulting business. The founders needed help from Industry experts with prior experience of bootstrapping & running products successfully based on contemporary Software development practices.',
+		outcomes: [
+			'A product team that is aligned to the Founder\'s target state',
+			'Established Role Clarity and hired head of Product Engineering',
+			'Coached the team members to instil Product mindset, the aspect of one to many leverage',
+			'Clarity on Product Strategy, MVP, and Architecture in collaboration with Founders & Executive team members',
+		],
+		meta: {
+			geography: 'India',
+			orgSize: '150',
+			leadership: 'Founder CEO',
+			ownership: 'Bootstrapped',
+			domain: 'CyberSecurity',
+			orgTenure: '3-5yrs',
+			assignmentTenure: '3 months',
+		},
+	},
+	{
+		title: 'Electronic Health Record Organization',
+		summary: 'Helping an Electronic Health Record organization, in the Speciality Healthcare EMR domain, to merge its two geographically dispersed Technology Teams that came together from an M&A.',
+		problem: 'A Private Equity firm acquires and decides to merge two successful & competing organizations in the Speciality Healthcare EMR domain. Technology teams being the largest part of the organization and the most critical to the success of the merger, the CEO identifies the need to bring someone with prior experience in post M&A integration.',
+		outcomes: [
+			'Recommended and helped implement the go-forward Product Strategy based on strengths & business potential of the overlapping products',
+			'Designed & implemented the Technology organization structure based on contemporary SaaS team design concepts',
+			'Coached the leaders & team members to navigate the difficult change curve successfully',
+			'Coaching on establishing a Product Development Culture with first principles, empowered teams, instilling Product and Agile Mindset, and a Lean culture',
+			'Coached the Engg leaders & team members on SDLC Methodologies – Agile, DevOps',
+			'Advised the CEO on various matters related to Organization Change Management during the challenging merger phase',
+			'Coaching the Engg Leaders & team members from both companies towards integrating & operating like One single company',
+			'Detailed Due Diligence and Recommendations to identify & fix areas that needed attention',
+		],
+		meta: {
+			geography: 'US Headquartered, India Development Centre',
+			orgSize: '100',
+			leadership: 'CEO',
+			ownership: 'Private Equity funded',
+			domain: 'Electronic Health Records',
+			orgTenure: '20yrs',
+			assignmentTenure: 'Ongoing (6 months till date)',
+		},
+	},
+	{
+		title: 'E-commerce Startup',
+		summary: 'Helping a high growth e-commerce startup, preparing for its Series-A funding, to scale and align their people, process & technology.',
+		problem: 'An E-commerce company that helps marketplaces with cataloguing automation solution, pricing intelligence was seeing a big spurt in growth. In the backdrop of such growth the company also wanted to start preparing for Series A funding. The Founder CEO realizes the importance of scaling the organization, especially the Technology organization where a lot was dependent on the CTO who was already getting over subscribed.',
+		outcomes: [
+			'Streamlined the Engineering process tooling by implementing workflow management with different JIRA solutions',
+			'Coached the teams on understanding the philosophy of Agile and the right way to use frameworks like SCRUM & Kanban',
+			'Advising the Founder CEO on all matters related to Software Development, Product Management & Organizational Leadership',
+		],
+		meta: {
+			geography: 'India',
+			orgSize: '100',
+			leadership: 'Founder CEO',
+			ownership: 'Pre-Series A',
+			domain: 'E-commerce',
+			orgTenure: '3yrs',
+			assignmentTenure: '3 months',
+		},
+	},
+];
+---
+
+<BaseLayout title="Key Projects" description="Case studies: AI adoption, change management, AI SDLC, 10x code throughput. Technology leadership consulting - Design & Architecture, CyberSecurity, Healthcare, E-commerce.">
+	<Header />
+	<main class="main">
+		<h1>Key Projects</h1>
+		<p class="intro">Selected consulting engagements across growth stage, M&A integration, and scaling organizations.</p>
+
+		<div class="case-studies">
+			{caseStudies.map((study, i) => (
+				<article class="case-study">
+					<h2>{study.title}</h2>
+					<p class="summary">{study.summary}</p>
+
+					<div class="problem-box">
+						<h3>Problem Statement</h3>
+						<p>{study.problem}</p>
+					</div>
+
+					<div class="outcomes-box">
+						<h3>Outcomes Accomplished</h3>
+						<ul>
+							{study.outcomes.map((o) => (
+								<li>{o}</li>
+							))}
+						</ul>
+					</div>
+
+					<dl class="meta-grid">
+						<dt>Geography</dt>
+						<dd>{study.meta.geography}</dd>
+						<dt>Organization Size</dt>
+						<dd>{study.meta.orgSize}</dd>
+						<dt>Leadership</dt>
+						<dd>{study.meta.leadership}</dd>
+						<dt>Ownership</dt>
+						<dd>{study.meta.ownership}</dd>
+						<dt>Domain</dt>
+						<dd>{study.meta.domain}</dd>
+						<dt>Tenure of Organization</dt>
+						<dd>{study.meta.orgTenure}</dd>
+						<dt>Tenure of assignment</dt>
+						<dd>{study.meta.assignmentTenure}</dd>
+					</dl>
+				</article>
+			))}
+		</div>
+	</main>
+	<Footer />
+</BaseLayout>
+
+<style>
+	.main {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 8rem 1.5rem 4rem;
+	}
+	.main h1 {
+		font-size: 2rem;
+		margin-bottom: 0.5rem;
+	}
+	.intro {
+		color: #555;
+		line-height: 1.6;
+		margin-bottom: 2.5rem;
+	}
+	.case-studies {
+		display: flex;
+		flex-direction: column;
+		gap: 2.5rem;
+	}
+	.case-study {
+		border: 1px solid #e0e0e0;
+		border-radius: 8px;
+		padding: 1.5rem;
+		background: #fafafa;
+	}
+	.case-study h2 {
+		font-size: 1.35rem;
+		margin: 0 0 1rem;
+		color: #e67e22;
+	}
+	.summary {
+		font-size: 1.05rem;
+		line-height: 1.6;
+		color: #333;
+		margin-bottom: 1.25rem;
+	}
+	.problem-box,
+	.outcomes-box {
+		margin-bottom: 1.25rem;
+		padding: 1rem;
+		background: #fff;
+		border-radius: 6px;
+		border-left: 4px solid #e67e22;
+	}
+	.case-study h3 {
+		font-size: 1rem;
+		margin: 0 0 0.5rem;
+		color: #333;
+	}
+	.problem-box p,
+	.outcomes-box ul {
+		margin: 0;
+		line-height: 1.6;
+		color: #444;
+	}
+	.outcomes-box ul {
+		padding-left: 1.25rem;
+		list-style: none;
+	}
+	.outcomes-box li {
+		margin-bottom: 0.4rem;
+	}
+	.outcomes-box li::before {
+		content: "- ";
+		margin-left: -1.25rem;
+		margin-right: 0.25rem;
+	}
+	.meta-grid {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		gap: 0.25rem 1.5rem;
+		font-size: 0.9rem;
+		margin: 0;
+	}
+	.meta-grid dt {
+		color: #666;
+		font-weight: 500;
+	}
+	.meta-grid dd {
+		margin: 0;
+		color: #333;
+	}
+</style>

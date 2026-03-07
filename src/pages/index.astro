@@ -1,0 +1,324 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Testimonial from '../components/Testimonial.astro';
+
+const expertiseAreas = [
+	{
+		title: 'Mergers & Acquisitions',
+		items: ['Post Merger Integration', 'Due Diligence'],
+		icon: '/images/icons8-merger-60.png',
+	},
+	{
+		title: 'Offshore Development',
+		items: ['Setting up Devt. Centres', 'Software Project Delivery'],
+		icon: '/images/icons8-software-development-66.png',
+	},
+	{
+		title: 'Engineering Leadership',
+		items: ['Fractional CTO/VP of Engg.', 'Engg Methodologies Transformation'],
+		icon: '/images/icons8-devops-60.png',
+	},
+	{
+		title: 'Artificial Intelligence (AI)',
+		items: ['AI SDLC, coding tools', 'AI change management'],
+		icon: '/images/icons8-artificial-intelligence-96.png',
+	},
+];
+
+const roles = [
+	{ label: 'Fractional CTO/VP Engg', icon: '/images/icons8-devops-60.png' },
+	{ label: 'Technology Consultant', icon: '/images/icons8-software-development-66.png' },
+	{ label: 'CXO Advisor', icon: '/images/icons8-coach-60.png' },
+	{ label: 'Team Coach', icon: '/images/icons8-coach-60.png' },
+	{ label: 'Country Head', icon: '/images/icons8-saas-64.png' },
+];
+
+const projects = [
+	{
+		title: 'Design & Architecture Company',
+		summary: 'Helping a Design & Architecture company based in Switzerland transition vendors, build a modern tech foundation, and adopt AI coding tools. Enabled bottoms-up AI adoption with change management, defined AI SDLC practices, achieved 10x code throughput, and designed a complex taxonomy application using AI.',
+		image: '/images/design-architecture.png',
+	},
+	{
+		title: 'CyberSecurity Organization',
+		summary: 'Successfully executed a project with a growth stage CyberSecurity organization to help them scale the product vertical, to support high growth in business and the volume of users',
+		image: '/images/CyberSecurity-copy.png',
+	},
+	{
+		title: 'Electronic Health Record Organization',
+		summary: 'Helping an Electronic Health Record organization, in the Speciality Healthcare EMR domain, to merge its two geographically dispersed Technology Teams that came together from an M&A',
+		image: '/images/EHR-copy.png',
+	},
+];
+---
+
+<BaseLayout title="Home" description="Ajay K Madan - Technology Leadership, AI adoption & change management. Fractional CTO, AI SDLC practices, AI coding tools. 25 yrs building enterprise products across early stage to mature companies.">
+	<Header />
+	<main class="main">
+		<section class="hero">
+			<div class="hero-content">
+				<div>
+					<h1 class="hero-title">Technology Leadership</h1>
+					<p class="hero-text">A Technology Leader with 25 yrs of experience in building enterprise grade products</p>
+					<p class="hero-text">My experience spans early stage, growth, expansion and mature stage global companies</p>
+					<p class="hero-text">My strength is establishing efficiency, scale with right culture and Governance</p>
+					<a href="/contact/?type=consultation" class="cta-button">Schedule A Free Consultation</a>
+				</div>
+				<img src="/images/Ajay-Profile-Pic-04.jpg" alt="Ajay K Madan" class="hero-profile-img" width="350" height="350" />
+			</div>
+		</section>
+
+		<Testimonial />
+
+		<section class="section" aria-labelledby="expertise-heading">
+			<h2 id="expertise-heading" class="section-title">Areas of Expertise</h2>
+			<div class="expertise-grid">
+				{expertiseAreas.map((area) => (
+					<div class="expertise-card">
+						<img src={area.icon} alt="" class="expertise-icon" width="96" height="96" />
+						<h3 class="expertise-title">{area.title}</h3>
+						<ul class="expertise-list">
+							{area.items.map((item) => (
+								<li>{item}</li>
+							))}
+						</ul>
+					</div>
+				))}
+			</div>
+		</section>
+
+		<section class="section" aria-labelledby="scenarios-heading">
+			<h2 id="scenarios-heading" class="section-title">Client Scenarios I consult for</h2>
+			<div class="scenarios-single">
+				<img src="/images/scenarios.jpg" alt="Client scenarios I consult for" class="scenario-img" />
+			</div>
+		</section>
+
+		<section class="section" aria-labelledby="roles-heading">
+			<h2 id="roles-heading" class="section-title">I join you as</h2>
+			<div class="roles-grid">
+				{roles.map((role) => (
+					<div class="role-item">
+						<img src={role.icon} alt="" class="role-icon" width="72" height="72" />
+						<span class="role-label">{role.label}</span>
+					</div>
+				))}
+			</div>
+		</section>
+
+		<section class="section" aria-labelledby="projects-heading">
+			<h2 id="projects-heading" class="section-title">Ongoing/Completed Projects</h2>
+			<div class="projects-grid">
+				{projects.map((project) => (
+					<article class="project-card">
+						<img src={project.image} alt={project.title} class="project-img" width="400" height="260" />
+						<div class="project-body">
+							<h3 class="project-title">{project.title}</h3>
+							<p class="project-summary">{project.summary}</p>
+						</div>
+					</article>
+				))}
+			</div>
+			<p class="projects-cta">
+				<a href="/projects/key-projects/" class="cta-button">Read more</a>
+			</p>
+		</section>
+	</main>
+	<Footer />
+</BaseLayout>
+
+<style>
+	.main {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 8rem 1.5rem 4rem;
+	}
+	.hero {
+		margin-bottom: 2rem;
+	}
+	.hero-content {
+		display: flex;
+		gap: 2rem;
+		align-items: center;
+		flex-wrap: wrap;
+	}
+	.hero-content > div {
+		flex: 1;
+		min-width: 280px;
+	}
+	.hero-profile-img {
+		width: 350px;
+		height: 350px;
+		object-fit: cover;
+		object-position: center 40%;
+		border-radius: 50%;
+		flex-shrink: 0;
+	}
+	@media (max-width: 640px) {
+		.hero-profile-img {
+			width: 240px;
+			height: 240px;
+		}
+	}
+	.hero-title {
+		font-size: 2.75rem;
+		font-weight: 700;
+		margin-bottom: 1.5rem;
+		color: #1a1a1a;
+	}
+	.hero-text {
+		font-size: 1.25rem;
+		line-height: 1.7;
+		margin-bottom: 1rem;
+		color: #444;
+	}
+	.cta-button {
+		display: inline-block;
+		background: #e67e22;
+		color: white;
+		text-decoration: none;
+		padding: 1rem 2rem;
+		font-size: 1.125rem;
+		font-weight: 600;
+		border-radius: 8px;
+		margin-top: 1.5rem;
+	}
+	.cta-button:hover {
+		background: #d35400;
+	}
+
+	.section {
+		margin: 4rem 0;
+	}
+	.section-title {
+		font-size: 2.5rem;
+		font-weight: 700;
+		color: #1a1a1a;
+		margin-bottom: 1.5rem;
+	}
+
+	.expertise-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 2rem;
+	}
+	.expertise-grid .expertise-icon {
+		width: 96px;
+		height: 96px;
+	}
+	@media (max-width: 768px) {
+		.expertise-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+	.expertise-card {
+		background: #f8f9fa;
+		padding: 2rem;
+		border-radius: 8px;
+		border-left: 4px solid #e67e22;
+	}
+	.expertise-icon {
+		display: block;
+		margin-bottom: 1rem;
+		width: 96px;
+		height: 96px;
+	}
+	.expertise-title {
+		font-size: 1.5rem;
+		font-weight: 600;
+		color: #333;
+		margin: 0 0 0.75rem;
+	}
+	.expertise-list {
+		margin: 0;
+		padding-left: 1.25rem;
+		list-style: none;
+		font-size: 1.2rem;
+		color: #555;
+		line-height: 1.7;
+	}
+	.expertise-list li::before {
+		content: "- ";
+		margin-left: -1.25rem;
+		margin-right: 0.25rem;
+	}
+
+	.scenarios-single {
+		max-width: 100%;
+	}
+	.scenario-img {
+		width: 100%;
+		max-width: 100%;
+		height: auto;
+		border-radius: 8px;
+		object-fit: cover;
+	}
+
+	.roles-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 2rem;
+	}
+	@media (max-width: 768px) {
+		.roles-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+	.role-item {
+		display: flex;
+		align-items: center;
+		gap: 1.25rem;
+		background: #f8f9fa;
+		padding: 2rem 2.25rem;
+		border-radius: 8px;
+		border-left: 4px solid #e67e22;
+		min-height: 140px;
+	}
+	.role-icon {
+		flex-shrink: 0;
+		width: 96px;
+		height: 96px;
+	}
+	.role-label {
+		font-size: 1.35rem;
+		font-weight: 600;
+		color: #333;
+	}
+
+	.projects-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+		gap: 2rem;
+	}
+	.project-card {
+		background: #f8f9fa;
+		border-radius: 8px;
+		overflow: hidden;
+		border: 1px solid #e0e0e0;
+	}
+	.project-img {
+		width: 100%;
+		height: 260px;
+		object-fit: cover;
+	}
+	.project-body {
+		padding: 1.5rem;
+	}
+	.project-title {
+		font-size: 1.35rem;
+		font-weight: 600;
+		color: #e67e22;
+		margin: 0 0 0.75rem;
+	}
+	.project-summary {
+		font-size: 1.1rem;
+		line-height: 1.6;
+		color: #555;
+		margin: 0;
+	}
+	.projects-cta {
+		margin-top: 1.5rem;
+	}
+</style>

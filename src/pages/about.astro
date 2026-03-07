@@ -1,0 +1,196 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Testimonial from '../components/Testimonial.astro';
+---
+
+<BaseLayout title="About" description="Ajay K Madan - Technology Leader, AI adoption & change management expert. 25 years building enterprise products. AI SDLC, technology transformation, fractional CTO.">
+	<Header />
+	<main class="main">
+		<div class="about-header">
+			<img src="/images/Ajay-Profile-Pic-04.jpg" alt="Ajay K Madan" class="about-profile-img" width="200" height="200" />
+			<div>
+				<h1>About Me</h1>
+				<p class="intro-text">Technology Leader with 25 years of experience in building enterprise-grade products, spanning early stage, growth, expansion and mature stage global companies.</p>
+			</div>
+		</div>
+
+		<section class="stats-grid">
+			<div class="stat-card">
+				<span class="stat-number">25</span>
+				<span class="stat-label">years of Experience</span>
+			</div>
+			<div class="stat-card">
+				<span class="stat-number">17</span>
+				<span class="stat-label">years in leadership roles</span>
+			</div>
+			<div class="stat-card">
+				<span class="stat-number">—</span>
+				<span class="stat-label">Enterprise On-premise & SaaS</span>
+			</div>
+			<div class="stat-card">
+				<span class="stat-number">—</span>
+				<span class="stat-label">Complex organizational transformations</span>
+			</div>
+			<div class="stat-card">
+				<span class="stat-number">—</span>
+				<span class="stat-label">Leadership coaching and mentoring</span>
+			</div>
+		</section>
+
+		<section class="experience-section">
+			<h2>Experience</h2>
+			<div class="experience-list">
+				<details class="experience-item" open>
+					<summary>Technology Consultant & Coach</summary>
+					<p>(since 2023) — I coach early & growth stage Technology or Tech enabled companies. I help them establish appropriate Governance practices that will enable scale & efficiency. I run programs to help companies understand the philosophy of Agile and the implementation of related project mgmt. frameworks. I advise CxO's on their Technology strategy and product roadmap. Building on my core strength of Governance, I am certified as an Independent Director for company boards.</p>
+				</details>
+				<details class="experience-item">
+					<summary>Executive Vice President</summary>
+					<p>(Technology: Smarsh, 21 yrs) — I served in an executive position as EVP at Smarsh and was the leader of a global engineering team responsible for the innovative capture product suite. I built and managed enterprise grade SaaS and on-premise products, scaled the team & operations as the company grew, and successfully executed complex organizational transformations in culture and methodologies. I was (jointly) responsible for a P&L close to $100 million ARR. Our Customers were the largest banks & financial institutions in the world who were part of a regulated industry that mandates strict adherence to compliance laws & e-discovery.</p>
+					<p>My stint in Smarsh lasted 21 years; joining as an Engineer in the early stage I grew through the ranks to EVP as the company rapidly grew & expanded thru M&A's to become a multi-billion dollar company by valuation and achieved leadership position in the Gartner magic quadrant for Information Archiving.</p>
+				</details>
+				<details class="experience-item">
+					<summary>Software Engineer</summary>
+					<p>(CyberCash, ALIT – 4+ yrs) — I was a very successful QA Test engineer focusing on scale by implementing test automation and my experience spanned Mainframe technologies, AS400 and Oracle systems.</p>
+				</details>
+				<details class="experience-item">
+					<summary>Sales</summary>
+					<p>(~ 1 year) I was successful as an on-field Sales Engineer selling space in the Yellow Pages for the famed Tata Group (Tata Donnelley). Though short, it was an experience early in my career that taught me how to talk to Customers and present a product's USP.</p>
+				</details>
+				<details class="experience-item">
+					<summary>Construction</summary>
+					<p>(~ 1.5 yrs) Having graduated in Civil Engineering, I had a stint in the Construction industry as a Structural Engineer as well as a Site Engineer responsible for designing & implementing foundations for medium sized commercial buildings in Bangalore.</p>
+				</details>
+			</div>
+		</section>
+
+		<section class="education-section">
+			<h2>Education</h2>
+			<p>B. M. S. College of Engineering. B.E, Civil Engineering — August 1991 – August 1995</p>
+		</section>
+
+		<section class="other-info-section">
+			<h2>Other Information</h2>
+			<ul>
+				<li>Certified Independent Director, by IICA</li>
+				<li>Director Identification Number — DIN 00 0899 1387</li>
+				<li>Independent Director Number — IDDB-DI-202311-053554</li>
+			</ul>
+		</section>
+
+		<Testimonial />
+	</main>
+	<Footer />
+</BaseLayout>
+
+<style>
+	.main {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 8rem 1.5rem 4rem;
+	}
+	.about-header {
+		display: flex;
+		gap: 2rem;
+		align-items: flex-start;
+		flex-wrap: wrap;
+		margin-bottom: 3rem;
+	}
+	.about-profile-img {
+		width: 200px;
+		height: 200px;
+		object-fit: cover;
+		border-radius: 50%;
+		flex-shrink: 0;
+	}
+	.main h1 {
+		font-size: 2rem;
+		margin-bottom: 1rem;
+	}
+	.main h2 {
+		font-size: 1.5rem;
+		margin: 2.5rem 0 1rem;
+		color: #333;
+		border-bottom: 2px solid #e67e22;
+		padding-bottom: 0.5rem;
+	}
+	.intro-text {
+		line-height: 1.7;
+		color: #444;
+	}
+	.stats-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+		gap: 1rem;
+		margin-bottom: 3rem;
+	}
+	.stat-card {
+		background: #f8f9fa;
+		border: 1px solid #eee;
+		border-radius: 8px;
+		padding: 1rem;
+		text-align: center;
+		box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+	}
+	.stat-number {
+		display: block;
+		font-size: 1.5rem;
+		font-weight: 700;
+		color: #e67e22;
+	}
+	.stat-label {
+		font-size: 0.85rem;
+		color: #555;
+		line-height: 1.3;
+	}
+	.experience-list {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+	.experience-item {
+		border: 1px solid #e0e0e0;
+		border-radius: 8px;
+		overflow: hidden;
+	}
+	.experience-item summary {
+		padding: 1rem 1.25rem;
+		font-weight: 600;
+		cursor: pointer;
+		background: #fafafa;
+		list-style: none;
+	}
+	.experience-item summary::-webkit-details-marker { display: none; }
+	.experience-item summary::after {
+		content: '+';
+		float: right;
+		font-weight: 400;
+		color: #e67e22;
+	}
+	.experience-item[open] summary::after {
+		content: '−';
+	}
+	.experience-item p {
+		padding: 0 1.25rem 1.25rem;
+		margin: 0;
+		line-height: 1.7;
+		color: #444;
+	}
+	.experience-item p + p {
+		margin-top: 0.75rem;
+	}
+	.education-section p,
+	.other-info-section ul {
+		line-height: 1.7;
+		color: #444;
+	}
+	.other-info-section ul {
+		margin: 0;
+		padding-left: 1.5rem;
+	}
+	.other-info-section li {
+		margin-bottom: 0.5rem;
+	}
+</style>

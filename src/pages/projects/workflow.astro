@@ -1,0 +1,183 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const workflowPhases = [
+	{
+		title: 'Discovery & Assessment',
+		description: 'Assignment starts with a Discovery phase. We identify your goals, understand your current state, and assess the gap between where you are and where you want to be.',
+		icon: '/images/icons8-meeting-room-50.png',
+	},
+	{
+		title: 'Planning',
+		description: 'We define a clear roadmap, prioritize initiatives, and establish success metrics. The plan is tailored to your engagement type—Fractional CTO, M&A integration, coaching, or methodology transformation.',
+		icon: '/images/icons8-software-development-66.png',
+	},
+	{
+		title: 'Execution',
+		description: 'Break goals into actionable steps and execute in order of priority. Regular check-ins ensure alignment, and we adapt as needed based on feedback and changing circumstances.',
+		icon: '/images/icons8-devops-60.png',
+	},
+	{
+		title: 'Review & Iterate',
+		description: 'Measure outcomes against success metrics, capture lessons learned, and refine the approach. Continuous improvement is built into every engagement.',
+		icon: '/images/icons8-agile-65.png',
+	},
+];
+---
+
+<BaseLayout title="Workflow" description="Typical workflow for consulting engagements by Ajay K Madan - Discovery, Planning, Execution, and Review.">
+	<Header />
+	<main class="main">
+		<h1>Workflow</h1>
+		<p class="intro">My consulting engagements typically follow a structured approach tailored to your needs. Each phase is adapted to the engagement type—whether Fractional CTO, M&A integration, coaching, or methodology transformation.</p>
+
+		<section class="workflow-section">
+			<h2 class="section-title">Typical Workflow for an Engagement</h2>
+			<div class="phases">
+			{workflowPhases.map((phase, i) => (
+				<article class="phase-card">
+					<div class="phase-header">
+						<img src={phase.icon} alt="" class="phase-icon" width="64" height="64" />
+						<h3 class="phase-title">{phase.title}</h3>
+					</div>
+					<p class="phase-description">{phase.description}</p>
+				</article>
+			))}
+			</div>
+			<img src="/images/WF-copy.png" alt="Consulting workflow diagram" class="workflow-diagram" />
+		</section>
+
+		<section class="additional-visuals">
+			<h2 class="section-title">Workflow in Practice</h2>
+			<div class="workflow-images">
+				<img src="/images/typical-wrkflw-copy-2.png" alt="Typical workflow" class="wf-img" />
+				<img src="/images/typ-wf-copy.png" alt="Workflow phases" class="wf-img" />
+			</div>
+		</section>
+
+		<p class="cta-wrap">
+			<a href="/contact/?type=consultation" class="cta-link">Schedule a Free Consultation</a>
+			<span class="cta-text">to discuss how we can work together.</span>
+		</p>
+	</main>
+	<Footer />
+</BaseLayout>
+
+<style>
+	.main {
+		max-width: 900px;
+		margin: 0 auto;
+		padding: 8rem 1.5rem 4rem;
+	}
+	.main h1 {
+		font-size: 2.5rem;
+		margin-bottom: 0.5rem;
+		color: #1a1a1a;
+	}
+	.intro {
+		color: #555;
+		line-height: 1.7;
+		margin-bottom: 2.5rem;
+		font-size: 1.1rem;
+	}
+	.section-title {
+		font-size: 1.5rem;
+		font-weight: 700;
+		color: #1a1a1a;
+		margin-bottom: 1.5rem;
+	}
+	.workflow-section {
+		margin: 3rem 0;
+	}
+	.workflow-diagram {
+		width: 100%;
+		height: auto;
+		border-radius: 8px;
+		box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+		margin-top: 2rem;
+	}
+	.phases {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1.5rem;
+		margin-bottom: 2rem;
+	}
+	@media (max-width: 768px) {
+		.phases {
+			grid-template-columns: 1fr;
+		}
+	}
+	.phase-card {
+		background: #f8f9fa;
+		padding: 1.5rem;
+		border-radius: 8px;
+		border-left: 4px solid #e67e22;
+	}
+	.phase-header {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		margin-bottom: 1rem;
+	}
+	.phase-icon {
+		flex-shrink: 0;
+	}
+	.phase-title {
+		font-size: 1.2rem;
+		font-weight: 600;
+		color: #333;
+		margin: 0;
+	}
+	.phase-description {
+		font-size: 1rem;
+		line-height: 1.6;
+		color: #555;
+		margin: 0;
+	}
+	.workflow-diagram {
+		width: 100%;
+		height: auto;
+		border-radius: 8px;
+		box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+		margin-top: 2rem;
+	}
+	.additional-visuals {
+		margin: 3rem 0;
+	}
+	.workflow-images {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 1.5rem;
+	}
+	.wf-img {
+		width: 100%;
+		height: auto;
+		border-radius: 8px;
+		box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+	}
+	.cta-wrap {
+		margin-top: 2.5rem;
+		text-align: center;
+	}
+	.cta-link {
+		display: inline-block;
+		background: #e67e22;
+		color: white;
+		text-decoration: none;
+		padding: 1rem 2rem;
+		border-radius: 8px;
+		font-weight: 600;
+		font-size: 1.1rem;
+	}
+	.cta-link:hover {
+		background: #d35400;
+	}
+	.cta-text {
+		display: block;
+		margin-top: 0.75rem;
+		color: #666;
+		font-size: 1rem;
+	}
+</style>
