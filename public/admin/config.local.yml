@@ -1,6 +1,11 @@
+# Local dev config - uses decap-server proxy to read/write real files (no login)
+# Used automatically when visiting /admin on localhost
+# Run: npx decap-server (in project root, alongside npm run dev)
 backend:
   name: git-gateway
   branch: main
+
+local_backend: true
 
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"

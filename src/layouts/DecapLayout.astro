@@ -1,0 +1,23 @@
+---
+// Minimal layout for Decap CMS - no header/footer, required for the CMS to mount
+---
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="robots" content="noindex" />
+		<link id="cms-config-link" href="/admin/config.yml" type="text/yaml" rel="cms-config-url" />
+		<script is:inline>
+			// On localhost: use test-repo (no login). On production: git-gateway (Netlify Identity).
+			if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+				document.getElementById('cms-config-link').href = '/admin/config.local.yml';
+			}
+		</script>
+		<title>Content Manager - Ajay K Madan</title>
+	</head>
+	<body>
+		<slot />
+		<script is:inline src="https://unpkg.com/decap-cms@^3.1.2/dist/decap-cms.js"></script>
+	</body>
+</html>

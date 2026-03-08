@@ -2,10 +2,18 @@
 interface Props {
 	title: string;
 	description?: string;
+	ogImage?: string;
 }
 
-const { title, description = "Ajay K Madan - Technology Leadership, AI adoption & change management. 25 yrs building enterprise products. AI SDLC, AI coding tools, technology transformation." } = Astro.props;
+const { title, description = "Ajay K Madan - Technology Leadership, AI adoption & change management. 25 yrs building enterprise products. AI SDLC, AI coding tools, technology transformation.", ogImage } = Astro.props;
 const gaId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
+const gscVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
+const site = Astro.site?.href ?? 'https://ajaykmadan.in';
+const siteBase = site.endsWith('/') ? site : site + '/';
+const canonicalUrl = new URL(Astro.url.pathname, siteBase).href;
+const defaultOgImage = new URL('/images/Ajay-Profile-Pic-04.jpg', siteBase).href;
+const imageUrl = ogImage ? (ogImage.startsWith('http') ? ogImage : new URL(ogImage.replace(/^\//, ''), siteBase).href) : defaultOgImage;
+const fullTitle = `${title} - Ajay K Madan`;
 ---
 
 <!DOCTYPE html>
@@ -13,10 +21,54 @@ const gaId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/png" href="/images/cropped-Website-Logo-v2-copy.png" />
+		<link rel="canonical" href={canonicalUrl} />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="description" content={description} />
+		{gscVerification && <meta name="google-site-verification" content={gscVerification} />}
 		<meta name="generator" content={Astro.generator} />
-		<title>{title} - Ajay K Madan</title>
+		<title>{fullTitle}</title>
+
+		<!-- Open Graph -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonicalUrl} />
+		<meta property="og:title" content={fullTitle} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={imageUrl} />
+		<meta property="og:site_name" content="Ajay K Madan" />
+		<meta property="og:locale" content="en_US" />
+
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={fullTitle} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={imageUrl} />
+
+		<!-- JSON-LD: Person + ProfessionalService (AI & search discoverability) -->
+		<script type="application/ld+json" set:html={JSON.stringify({
+			"@context": "https://schema.org",
+			"@graph": [
+				{
+					"@type": "Person",
+					"@id": `${site}#person`,
+					"name": "Ajay K Madan",
+					"url": site,
+					"jobTitle": "Technology Leader, Fractional CTO, Engineering Leadership Consultant",
+					"description": "Technology Leader with 25 years of experience. Fractional CTO, Engineering Leadership consultant. AI adoption, change management, M&A technology integration, offshore development.",
+					"image": defaultOgImage,
+					"sameAs": ["https://www.linkedin.com/in/ajaykmadan/"]
+				},
+				{
+					"@type": "ProfessionalService",
+					"@id": `${site}#service`,
+					"name": "Ajay K Madan - Technology Leadership",
+					"url": site,
+					"description": "Fractional CTO and Technology Leadership consulting. Engineering leadership, AI adoption, change management, post-merger integration, offshore development. 25 years building enterprise products.",
+					"provider": { "@id": `${site}#person` },
+					"serviceType": ["Fractional CTO", "Technology Consultant", "Engineering Leadership", "AI Adoption Consulting", "M&A Technology Integration"],
+					"areaServed": { "@type": "Place", "name": "Global" }
+				}
+			]
+		})} />
 		{gaId && (
 			<>
 				<script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>

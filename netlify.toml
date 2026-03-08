@@ -4,3 +4,10 @@
 
 [build.environment]
   NODE_VERSION = "20"
+
+# Ensure /admin serves the Decap CMS page (rewrite so URL stays /admin)
+[[redirects]]
+  from = "/admin"
+  to = "/admin/index.html"
+  status = 200
+  force = true

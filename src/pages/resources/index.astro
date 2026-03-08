@@ -1,0 +1,349 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const leaders = (await getCollection('resourcesLeaders')).sort(
+	(a, b) => (a.data.order ?? 99) - (b.data.order ?? 99)
+);
+
+const articles = (await getCollection('resourcesArticles')).sort((a, b) => {
+	const dateA = a.data.pubDate?.valueOf() ?? 0;
+	const dateB = b.data.pubDate?.valueOf() ?? 0;
+	return dateB - dateA;
+});
+
+const tools = (await getCollection('resourcesTools')).sort(
+	(a, b) => (a.data.order ?? 99) - (b.data.order ?? 99)
+);
+---
+
+<BaseLayout
+	title="AI & Tech Resources"
+	description="Curated leaders to follow, articles, and tools for AI adoption, coding agents, and engineering leadership from Ajay K Madan."
+>
+	<Header />
+	<main class="main">
+		<section class="hero">
+			<h1 class="title">AI & Tech Resources</h1>
+			<p class="subtitle">
+				Leaders to follow, articles worth reading, and tools that help engineers adopt AI effectively. A running reference for teams building with AI.
+			</p>
+		</section>
+
+		<!-- 1. Leaders & Authors to Follow -->
+		<section class="section" aria-labelledby="leaders-heading">
+			<h2 id="leaders-heading" class="section-title">Leaders & Authors to Follow</h2>
+			<p class="section-desc">People in the AI space whose work informs my thinking on agents, adoption, and engineering.</p>
+			{leaders.length > 0 ? (
+				<div class="leaders-grid">
+					{leaders.map((leader) => (
+						<div class="leader-card">
+							<h3 class="leader-name">{leader.data.name}</h3>
+							<p class="leader-focus">{leader.data.focus}</p>
+							<div class="leader-links">
+								{leader.data.linkedin && (
+									<a href={leader.data.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`${leader.data.name} on LinkedIn`}>
+										LinkedIn
+									</a>
+								)}
+								{leader.data.twitter && (
+									<a href={leader.data.twitter} target="_blank" rel="noopener noreferrer" aria-label={`${leader.data.name} on X`}>
+										X
+									</a>
+								)}
+								{leader.data.website && (
+									<a href={leader.data.website} target="_blank" rel="noopener noreferrer" aria-label={`${leader.data.name} website`}>
+										Website
+									</a>
+								)}
+							</div>
+						</div>
+					))}
+				</div>
+			) : (
+				<p class="empty-note">No leaders added yet. Add entries via CMS or in <code>src/content/resourcesLeaders/</code>.</p>
+			)}
+		</section>
+
+		<!-- 2. Articles & Blogs (Running List) -->
+		<section class="section" aria-labelledby="articles-heading">
+			<h2 id="articles-heading" class="section-title">Articles & Blogs Worth Reading</h2>
+			<p class="section-desc">A running list of articles and posts on AI coding tools, adoption, and the future of software development.</p>
+			{articles.length > 0 ? (
+				<ul class="article-list">
+					{articles.map((article) => (
+						<li class="article-item">
+							<a href={article.data.sourceUrl} target="_blank" rel="noopener noreferrer" class="article-link">
+								<span class="article-title">{article.data.title}</span>
+								<span class="article-meta">
+									{article.data.author && <span class="article-author">{article.data.author}</span>}
+									<span class="article-source">{article.data.source}</span>
+									{article.data.pubDate && (
+										<span class="article-date">
+											{article.data.pubDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
+										</span>
+									)}
+								</span>
+							</a>
+						</li>
+					))}
+				</ul>
+			) : (
+				<p class="empty-note">No articles yet. Add entries via CMS or in <code>src/content/resourcesArticles/</code>.</p>
+			)}
+		</section>
+
+		<!-- 3. AI Tools (Empty for now) -->
+		<section class="section" aria-labelledby="tools-heading">
+			<h2 id="tools-heading" class="section-title">AI Tools for Engineers</h2>
+			<p class="section-desc">Useful references for engineers adopting AI coding tools, agents, and workflows. More coming soon.</p>
+			{tools.length > 0 ? (
+				<div class="tools-grid">
+					{tools.map((tool) => (
+						<a href={tool.data.url} target="_blank" rel="noopener noreferrer" class="tool-card">
+							<h3 class="tool-title">{tool.data.title}</h3>
+							{tool.data.category && <span class="tool-category">{tool.data.category}</span>}
+							{tool.data.description && <p class="tool-desc">{tool.data.description}</p>}
+						</a>
+					))}
+				</div>
+			) : (
+				<div class="tools-placeholder">
+					<p>This section is empty for now. I'll add tools and references as I discover useful resources for engineers.</p>
+				</div>
+			)}
+		</section>
+
+		<!-- Optional: Future sections (collapsed / coming soon) -->
+		<section class="section section-muted" aria-labelledby="more-heading">
+			<h2 id="more-heading" class="section-title">More to Come</h2>
+			<p class="section-desc">
+				Planned additions: <strong>Newsletters</strong>, <strong>Podcasts</strong>, <strong>Communities</strong>, and <strong>Courses</strong>—curated for engineering leaders and teams adopting AI.
+			</p>
+		</section>
+	</main>
+	<Footer />
+</BaseLayout>
+
+<style>
+	.main {
+		max-width: 900px;
+		margin: 0 auto;
+		padding: 8rem 1.5rem 4rem;
+	}
+
+	.hero {
+		text-align: center;
+		margin-bottom: 3rem;
+		padding: 0 1rem;
+	}
+	.title {
+		font-size: 2.5rem;
+		font-weight: 700;
+		color: #1a1a1a;
+		margin: 0 0 0.75rem;
+		letter-spacing: -0.02em;
+	}
+	.subtitle {
+		font-size: 1.15rem;
+		line-height: 1.7;
+		color: #555;
+		max-width: 600px;
+		margin: 0 auto;
+	}
+
+	.section {
+		margin: 3rem 0;
+		padding-bottom: 3rem;
+		border-bottom: 1px solid #e8e8e8;
+	}
+	.section:last-of-type {
+		border-bottom: none;
+	}
+	.section-title {
+		font-size: 1.75rem;
+		font-weight: 700;
+		color: #1a1a1a;
+		margin: 0 0 0.5rem;
+	}
+	.section-desc {
+		font-size: 1rem;
+		color: #555;
+		line-height: 1.6;
+		margin: 0 0 1.5rem;
+	}
+
+	.leaders-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+		gap: 1.25rem;
+	}
+	.leader-card {
+		background: #f8f9fa;
+		border-radius: 8px;
+		padding: 1.25rem;
+		border-left: 4px solid #e67e22;
+	}
+	.leader-name {
+		font-size: 1.1rem;
+		font-weight: 600;
+		color: #1a1a1a;
+		margin: 0 0 0.35rem;
+	}
+	.leader-focus {
+		font-size: 0.9rem;
+		color: #555;
+		margin: 0 0 0.75rem;
+		line-height: 1.4;
+	}
+	.leader-links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+	}
+	.leader-links a {
+		font-size: 0.85rem;
+		font-weight: 600;
+		color: #e67e22;
+		text-decoration: none;
+	}
+	.leader-links a:hover {
+		text-decoration: underline;
+	}
+
+	.article-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	.article-item {
+		border-bottom: 1px solid #eee;
+	}
+	.article-item:last-child {
+		border-bottom: none;
+	}
+	.article-link {
+		display: block;
+		padding: 1rem 0;
+		text-decoration: none;
+		color: inherit;
+		transition: background 0.2s ease;
+	}
+	.article-link:hover {
+		background: rgba(230, 126, 34, 0.06);
+	}
+	.article-title {
+		display: block;
+		font-size: 1.05rem;
+		font-weight: 600;
+		color: #1a1a1a;
+		margin-bottom: 0.35rem;
+	}
+	.article-link:hover .article-title {
+		color: #e67e22;
+	}
+	.article-meta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem 1rem;
+		font-size: 0.85rem;
+		color: #666;
+	}
+	.article-author::after {
+		content: "·";
+		margin-left: 0.5rem;
+	}
+	.article-source {
+		text-transform: uppercase;
+		letter-spacing: 0.03em;
+		font-weight: 600;
+		color: #e67e22;
+	}
+
+	.tools-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+		gap: 1.25rem;
+	}
+	.tool-card {
+		background: #f8f9fa;
+		border-radius: 8px;
+		padding: 1.25rem;
+		text-decoration: none;
+		color: inherit;
+		border: 1px solid #e8e8e8;
+		transition: border-color 0.2s ease, box-shadow 0.2s ease;
+	}
+	.tool-card:hover {
+		border-color: #e67e22;
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+	}
+	.tool-title {
+		font-size: 1.1rem;
+		font-weight: 600;
+		color: #1a1a1a;
+		margin: 0 0 0.5rem;
+	}
+	.tool-card:hover .tool-title {
+		color: #e67e22;
+	}
+	.tool-category {
+		font-size: 0.8rem;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: #666;
+	}
+	.tool-desc {
+		font-size: 0.9rem;
+		color: #555;
+		margin: 0.5rem 0 0;
+		line-height: 1.5;
+	}
+	.tools-placeholder {
+		background: #f8f9fa;
+		border: 1px dashed #ddd;
+		border-radius: 8px;
+		padding: 2rem;
+		text-align: center;
+		color: #666;
+	}
+	.tools-placeholder p {
+		margin: 0;
+		line-height: 1.6;
+	}
+
+	.section-muted {
+		background: #fafafa;
+		margin: 3rem -1.5rem 0;
+		padding: 2rem 1.5rem 3rem;
+		border-radius: 8px;
+		border: none;
+	}
+	.section-muted .section-desc {
+		margin-bottom: 0;
+	}
+
+	.empty-note {
+		font-size: 0.95rem;
+		color: #666;
+		margin: 0;
+	}
+	.empty-note code {
+		background: #e8e8e8;
+		padding: 0.2rem 0.5rem;
+		border-radius: 4px;
+		font-size: 0.85em;
+	}
+
+	@media (max-width: 768px) {
+		.title {
+			font-size: 2rem;
+		}
+		.leaders-grid,
+		.tools-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
