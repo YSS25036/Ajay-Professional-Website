@@ -3,11 +3,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Testimonial from '../components/Testimonial.astro';
-import { getCollection } from 'astro:content';
-
-const latestArticles = (await getCollection('resourcesArticles'))
-	.sort((a, b) => (b.data.pubDate?.valueOf() ?? 0) - (a.data.pubDate?.valueOf() ?? 0))
-	.slice(0, 3);
 
 const expertiseAreas = [
 	{
@@ -131,30 +126,6 @@ const projects = [
 			</p>
 		</section>
 
-		{latestArticles.length > 0 && (
-			<section class="section" aria-labelledby="resources-heading">
-				<h2 id="resources-heading" class="section-title">AI & Tech Resources</h2>
-				<p class="section-subtitle">Leaders to follow, articles worth reading, and tools for engineers adopting AI.</p>
-				<div class="insights-grid">
-					{latestArticles.map((article) => {
-						const pubDate = article.data.pubDate ?? new Date();
-						return (
-							<a href={article.data.sourceUrl} target="_blank" rel="noopener noreferrer" class="insight-card">
-								<span class="insight-source">{article.data.source}</span>
-								<h3 class="insight-title">{article.data.title}</h3>
-								<span class="insight-date">
-									{pubDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
-								</span>
-								<span class="insight-cta">Read article →</span>
-							</a>
-						);
-					})}
-				</div>
-				<p class="insights-cta">
-					<a href="/resources/" class="cta-button">View all Resources</a>
-				</p>
-			</section>
-		)}
 	</main>
 	<Footer />
 </BaseLayout>
