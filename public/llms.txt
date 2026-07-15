@@ -16,8 +16,9 @@
 - Legacy migration acceleration with AI: the "migration factory" pattern of
   repeatable stations (scope, specify, generate, verify, release) with human
   control gates at spec sign-off, verification, and release approval.
-- Spec-driven development: behavior specs as the contract that makes AI output
-  verifiable (one spec drives code, tests, review, and documentation).
+- Spec-based development: a behavior spec written once, before generation, that
+  works at four moments: the contract before code, the test checklist after,
+  the arbiter when a field defect arrives, and the living record after delivery.
 - Engineering measurement: a four-rung ladder (cost, usage, quality, outcome)
   for proving AI adoption works; annual distillations of the DORA State of DevOps research.
 - Fractional CTO / VP Engineering, engineering leadership, post-merger technology

@@ -60,11 +60,11 @@ const operatingModel = [
 	},
 ];
 
-const specJobs = [
-	{ job: 'Code', desc: 'The spec is the generation target. AI builds against a contract, not a vague prompt.' },
-	{ job: 'Tests', desc: 'Acceptance criteria translate directly into test cases, so verification comes almost free.' },
-	{ job: 'Review', desc: 'Reviewers check conformance to the spec instead of guessing intent from a diff.' },
-	{ job: 'Docs', desc: 'The spec becomes living documentation of what the system actually does.' },
+const specMoments = [
+	{ moment: 'Before generation', job: 'The contract', desc: 'Behavior inventory, edge cases, and acceptance criteria drafted before a line of code is generated. A lead signs off: a named human gate.' },
+	{ moment: 'After generation', job: 'The checklist', desc: 'Every item in the spec becomes a test or parity check. Verification is derived from the spec, not re-invented by QA. Green to merge.' },
+	{ moment: 'In the field', job: 'The arbiter', desc: 'A defect report becomes a diff against the spec. Code wrong, or spec wrong? Either way, fixed at the source.' },
+	{ moment: 'After delivery', job: 'The record', desc: 'The spec and its test suite outlive the project as living documentation of what the system actually does.' },
 ];
 
 const measurementRungs = [
@@ -81,7 +81,7 @@ const faqs = [
 	},
 	{
 		q: 'What is spec-driven development in an AI context?',
-		a: 'It means writing a precise behavior specification before generation, so AI output can be verified against a contract instead of eyeballed. One spec does four jobs: it drives the code, the tests, the review, and the documentation.',
+		a: 'It means writing a precise behavior specification before generation, so AI output can be verified against a contract instead of eyeballed. Written once, the spec works at four moments: the contract before generation, the test checklist after, the arbiter when a field defect arrives, and the living record after delivery.',
 	},
 	{
 		q: 'Can AI really accelerate legacy migrations?',
@@ -183,22 +183,31 @@ const faqs = [
 			</p>
 		</section>
 
-		<!-- Spec closure -->
+		<!-- Spec-based development -->
 		<section class="section" aria-labelledby="spec-heading">
-			<h2 id="spec-heading" class="section-title">Write the spec once. It does four jobs.</h2>
+			<h2 id="spec-heading" class="section-title">Spec-based development: write it once, it never stops working</h2>
 			<p class="section-desc">
 				AI has made code cheap to produce. That, in turn, has made specs expensive to skip.
-				A precise behavior spec is the contract that turns plausible AI output into verifiable
-				engineering. Write it once, and it works for you four times over.
+				Ask a model to "preserve all existing functionality" without a spec, and the model
+				decides for itself what that means, from whatever files it happens to see. That is
+				where silent invention and conversion defects come from. Spec-based development closes
+				that door: a precise behavior spec, written before generation, that then works for you
+				at four different moments.
 			</p>
 			<div class="spec-grid">
-				{specJobs.map((s) => (
+				{specMoments.map((s) => (
 					<div class="card">
+						<span class="spec-moment">{s.moment}</span>
 						<h3 class="card-title">{s.job}</h3>
 						<p class="card-text">{s.desc}</p>
 					</div>
 				))}
 			</div>
+			<p class="section-desc spec-footnote">
+				This closure is what changes the economics. Without it, AI output is fast to generate
+				and slow to trust. With it, the checking is generated, not performed. And there is a
+				flywheel: every defect that escapes goes back to improve the spec template.
+			</p>
 		</section>
 
 		<!-- Migration factory -->
@@ -502,6 +511,19 @@ const faqs = [
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 		gap: 1.5rem;
+	}
+	.spec-moment {
+		display: block;
+		font-size: 0.78rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: #e67e22;
+		margin-bottom: 0.5rem;
+	}
+	.spec-footnote {
+		margin-top: 1.5rem;
+		margin-bottom: 0;
 	}
 
 	.factory-flow {
