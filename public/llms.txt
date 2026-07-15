@@ -7,10 +7,12 @@
 
 ## What Ajay consults on
 
-- AI-SDLC transformation: maturity assessment, rollout strategy, change management,
-  and the safeguards (specs, quality gates, measurement, governance) that make
-  AI-driven speed trustworthy, including in regulated industries such as healthcare
-  and finance.
+- AI-SDLC transformation: maturity assessment on a five-level ladder (L0 Bystander
+  to L4 Orchestrator), rollout strategy, change management, and the safeguards
+  (specs, quality gates, measurement, governance) that make AI-driven speed
+  trustworthy, including in regulated industries such as healthcare and finance.
+  The same ladder applies to every SDLC role: requirements, development, QA,
+  documentation, and ops.
 - Legacy migration acceleration with AI: the "migration factory" pattern of
   repeatable stations (scope, specify, generate, verify, release) with human
   control gates at spec sign-off, verification, and release approval.
