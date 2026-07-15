@@ -3,8 +3,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Testimonial from '../components/Testimonial.astro';
+import NewsletterSignup from '../components/NewsletterSignup.astro';
 
 const expertiseAreas = [
+	{
+		title: 'AI-Driven SDLC Transformation',
+		items: ['AI maturity assessment & rollout strategy', 'Migration factories & spec-driven development', 'Measurement, governance & safeguards'],
+		icon: '/images/icons8-artificial-intelligence-96.png',
+	},
+	{
+		title: 'Engineering Leadership',
+		items: ['Fractional CTO/VP of Engg.', 'Engg Methodologies Transformation'],
+		icon: '/images/icons8-devops-60.png',
+	},
 	{
 		title: 'Mergers & Acquisitions',
 		items: ['Post Merger Integration', 'Due Diligence'],
@@ -14,16 +25,6 @@ const expertiseAreas = [
 		title: 'Offshore Development',
 		items: ['Setting up Devt. Centres', 'Software Project Delivery'],
 		icon: '/images/icons8-software-development-66.png',
-	},
-	{
-		title: 'Engineering Leadership',
-		items: ['Fractional CTO/VP of Engg.', 'Engg Methodologies Transformation'],
-		icon: '/images/icons8-devops-60.png',
-	},
-	{
-		title: 'Artificial Intelligence (AI)',
-		items: ['AI SDLC, coding tools', 'AI change management'],
-		icon: '/images/icons8-artificial-intelligence-96.png',
 	},
 ];
 
@@ -54,17 +55,19 @@ const projects = [
 ];
 ---
 
-<BaseLayout title="Home" description="Ajay K Madan - Technology Leadership, AI adoption & change management. Fractional CTO, AI SDLC practices, AI coding tools. 25 yrs building enterprise products across early stage to mature companies.">
+<BaseLayout title="Home" description="Ajay K Madan - AI-SDLC transformation consultant & Fractional CTO. Helping medium and large enterprises adopt AI across the software development lifecycle: fast, measured, and safe. 25 yrs building enterprise products.">
 	<Header />
 	<main class="main">
 		<section class="hero">
 			<div class="hero-content">
 				<div>
-					<h1 class="hero-title">Technology Leadership</h1>
-					<p class="hero-text">A Technology Leader with 25 yrs of experience in building enterprise grade products</p>
-					<p class="hero-text">My experience spans early stage, growth, expansion and mature stage global companies</p>
-					<p class="hero-text">My strength is establishing efficiency, scale with right culture and Governance</p>
-					<a href="/contact/?type=consultation" class="cta-button">Schedule A Free Consultation</a>
+					<h1 class="hero-title">AI in your SDLC: fast, measured, safe</h1>
+					<p class="hero-text">I help medium and large enterprises transform software delivery with AI, built on the specs, quality gates, and measurement that make speed trustworthy</p>
+					<p class="hero-text">25 years building enterprise-grade products, from early-stage startups to mature global companies</p>
+					<p class="hero-cta-row">
+						<a href="/contact/?type=consultation" class="cta-button">Schedule A Free Consultation</a>
+						<a href="/blog/" class="cta-secondary">Read my essays on AI and engineering →</a>
+					</p>
 				</div>
 				<img src="/images/Ajay-Profile-Pic-04.jpg" alt="Ajay K Madan" class="hero-profile-img" width="350" height="350" />
 			</div>
@@ -125,6 +128,8 @@ const projects = [
 				<a href="/projects/key-projects/" class="cta-button">Read more</a>
 			</p>
 		</section>
+
+		<NewsletterSignup />
 
 	</main>
 	<Footer />
@@ -188,6 +193,23 @@ const projects = [
 	}
 	.cta-button:hover {
 		background: #d35400;
+	}
+	.hero-cta-row {
+		display: flex;
+		align-items: center;
+		gap: 1.5rem;
+		flex-wrap: wrap;
+	}
+	.cta-secondary {
+		display: inline-block;
+		margin-top: 1.5rem;
+		color: #e67e22;
+		font-size: 1.125rem;
+		font-weight: 600;
+		text-decoration: none;
+	}
+	.cta-secondary:hover {
+		text-decoration: underline;
 	}
 
 	.section {

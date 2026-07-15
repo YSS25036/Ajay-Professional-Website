@@ -1,0 +1,642 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import NewsletterSignup from '../components/NewsletterSignup.astro';
+
+const maturityLevels = [
+	{ level: 'L0', name: 'Bystander', desc: 'No AI at all, or ad-hoc chat on the side. No leverage, and more teams sit here than admit it.', unlock: 'Nothing. This is the starting point.' },
+	{ level: 'L1', name: 'Assisted', desc: 'AI completes what you were already typing. Minutes saved.', unlock: 'Approved tools and clear data boundaries: what code and data the AI may see' },
+	{ level: 'L2', name: 'Conversational', desc: 'You ask, AI drafts, explains, and reviews, one request at a time. Hours saved, but still human-driven at every step.', unlock: 'Working agreements, and human review of everything the AI returns' },
+	{ level: 'L3', name: 'Delegator', desc: 'You hand over whole tasks. AI plans, executes, and self-checks; you review the result. Days saved, and cycle time visibly drops.', unlock: 'Spec-driven development: behavior specs signed off before generation, acceptance criteria running as automated tests' },
+	{ level: 'L4', name: 'Orchestrator', desc: 'You direct multiple AI workers in parallel and own the outcomes. Team-level capacity from one person.', unlock: 'Named human approval gates on every lane, per-station measurement, and release decisions made on evidence' },
+];
+
+const operatingModel = [
+	{
+		role: 'Requirements (Product / BA)',
+		cells: [
+			'AI polishes PRD and story wording',
+			'Drafts user stories and acceptance criteria with AI',
+			'Working prototypes instead of mockups: requirements as working code',
+			'Requirement to prototype to validation pipeline run by agents; the PM steers',
+		],
+	},
+	{
+		role: 'Development',
+		cells: [
+			'Tab-completion for boilerplate and syntax',
+			'"Explain this legacy module"; AI-drafted refactors and unit tests',
+			'An agent takes a ticket to a multi-file change with tests, arriving as a PR to review',
+			'Parallel agents build, test, and review; humans at checkpoints',
+		],
+	},
+	{
+		role: 'Quality (QA)',
+		cells: [
+			'Autocomplete inside test scripts',
+			'AI generates test cases and edge cases from requirements',
+			'An agent builds and runs a regression suite from a code change',
+			'Standing agents watch coverage gaps, regressions, and bug triage on every build',
+		],
+	},
+	{
+		role: 'Documentation',
+		cells: [
+			'Grammar and phrasing help',
+			'AI drafts runbooks and onboarding docs from existing sources',
+			'Docs generated from the codebase and kept in sync by an agent',
+			'Doc agents refresh runbooks and release notes every release; human sign-off',
+		],
+	},
+	{
+		role: 'Ops / DevOps',
+		cells: [
+			'Autocomplete in scripts and configs',
+			'AI explains alerts and drafts playbooks',
+			'An agent triages an incident: correlates logs, proposes root cause',
+			'Agentic monitoring detects, diagnoses, and remediates, with approval gates',
+		],
+	},
+];
+
+const specMoments = [
+	{ moment: 'Before generation', job: 'The contract', desc: 'Behavior inventory, edge cases, and acceptance criteria drafted before a line of code is generated. A lead signs off: a named human gate.' },
+	{ moment: 'After generation', job: 'The checklist', desc: 'Every item in the spec becomes a test or parity check. Verification is derived from the spec, not re-invented by QA. Green to merge.' },
+	{ moment: 'In the field', job: 'The arbiter', desc: 'A defect report becomes a diff against the spec. Code wrong, or spec wrong? Either way, fixed at the source.' },
+	{ moment: 'After delivery', job: 'The record', desc: 'The spec and its test suite outlive the project as living documentation of what the system actually does.' },
+];
+
+const measurementRungs = [
+	{ rung: 'Outcome', desc: 'Cycle time, throughput, and the trend in escaped defects. This is the rung your CFO cares about.', top: true },
+	{ rung: 'Quality', desc: 'Rework rate, defect escape rate, and review findings on AI-generated code.', top: false },
+	{ rung: 'Usage', desc: 'Adoption, acceptance rates, and how deeply teams engage with the tools.', top: false },
+	{ rung: 'Cost', desc: 'Seats, tokens, and licenses. This is where most dashboards stop.', top: false },
+];
+
+const faqs = [
+	{
+		q: 'How should a medium or large enterprise roll out AI coding tools safely?',
+		a: 'Not tool-first, system-first. Assess where each team sits on the maturity ladder, introduce specs and quality gates before expanding autonomy, and instrument measurement from day one. Speed without verification is rework on a delay.',
+	},
+	{
+		q: 'What is spec-driven development in an AI context?',
+		a: 'It means writing a precise behavior specification before generation, so AI output can be verified against a contract instead of eyeballed. Written once, the spec works at four moments: the contract before generation, the test checklist after, the arbiter when a field defect arrives, and the living record after delivery.',
+	},
+	{
+		q: 'Can AI really accelerate legacy migrations?',
+		a: 'Yes. Migrations are the best enterprise use case for AI I have worked on, because the legacy system itself is the specification. A factory pattern makes the work repeatable and measurable instead of heroic: stations for scope, specify, generate, verify, and release, with human sign-off gates at the spec, the verification, and the release.',
+	},
+	{
+		q: 'How do you measure whether AI adoption is actually working?',
+		a: 'Climb the ladder: cost, usage, quality, outcome. Most dashboards stop at cost and usage. The signal that matters is at the top: cycle time, throughput, and the trend in escaped defects on AI-assisted work.',
+	},
+	{
+		q: 'What changes for AI adoption in regulated industries like healthcare or finance?',
+		a: 'The ground rules come first: approved-tool boundaries, data-residency and PHI/PII controls, human accountability at every gate, and audit trails for AI-generated code. The maturity ladder still applies. The gates are simply non-negotiable.',
+	},
+];
+---
+
+<BaseLayout
+	title="AI-SDLC Frameworks"
+	description="Frameworks for adopting AI across the software development lifecycle in medium and large enterprises: the AI maturity ladder (five levels, L0 to L4), spec-driven development, migration factories, the measurement ladder, and the role-by-level operating model for requirements, development, QA, documentation, and ops. By Ajay K Madan."
+>
+	<Header />
+	<script type="application/ld+json" set:html={JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		"mainEntity": faqs.map((f) => ({
+			"@type": "Question",
+			"name": f.q,
+			"acceptedAnswer": { "@type": "Answer", "text": f.a },
+		})),
+	})} />
+	<main class="main">
+		<section class="hero">
+			<h1 class="title">The AI-SDLC Operating Manual</h1>
+			<p class="subtitle">
+				There is no shortage of advice telling enterprises to move faster with AI. What I found
+				missing, both in my reading and in my consulting engagements, is practical guidance on how
+				to do it <em>safely</em>: with specs, quality gates, measurement, and ground rules that
+				regulated businesses cannot skip. These are the frameworks I use in real engagements,
+				shared here openly. I would love to hear how they hold up against your experience.
+			</p>
+		</section>
+
+		<!-- Speed vs Trust -->
+		<section class="section" aria-labelledby="trust-heading">
+			<h2 id="trust-heading" class="section-title">Start with speed vs. trust</h2>
+			<p class="section-desc">
+				Every AI adoption journey I have observed eventually runs into the same tension: the speed
+				the tools promise versus the trust the business requires. I find a gardening analogy useful
+				for explaining it to executive teams.
+			</p>
+			<div class="two-col">
+				<div class="card card-muted">
+					<h3 class="card-title">🪴 Potted plants</h3>
+					<p class="card-text">
+						Quick AI wins are like potted plants. They look impressive in a demo, they move around
+						easily, and they photograph well. But the roots are shallow. When production pressure,
+						compliance questions, or team turnover arrive, they wilt.
+					</p>
+				</div>
+				<div class="card card-accent">
+					<h3 class="card-title">🌳 The rooted tree</h3>
+					<p class="card-text">
+						Adoption that lasts grows a root system first: behavior specs, review gates,
+						measurement, and ground rules that respect your compliance reality. It is slower to
+						plant, and it compounds for years. Speed you cannot trust is not speed. It is rework
+						on a delay.
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- Maturity model -->
+		<section class="section" aria-labelledby="maturity-heading">
+			<h2 id="maturity-heading" class="section-title">The AI maturity ladder: five levels, L0 to L4</h2>
+			<p class="section-desc">
+				The names describe how a person works with AI, not which tool they have. That makes one
+				scale work for every role: engineering, QA, product, documentation, ops. In discovery
+				conversations, most teams place themselves at L3. When we look at the evidence together,
+				most are at L1. The gap matters because you cannot buy your way up this ladder. Each
+				level gives AI more autonomy, more autonomy demands more trust, and that trust has to be
+				earned by putting a specific safeguard in place first. Buying more seats moves nobody
+				from L2 to L4. Writing specs and wiring gates does. Where would you honestly place your
+				teams?
+			</p>
+			<ol class="maturity-ladder">
+				{maturityLevels.map((l, i) => (
+					<li class="maturity-step" style={`--step: ${i + 1}`}>
+						<span class="maturity-level">{l.level}</span>
+						<h3 class="maturity-name">{l.name}</h3>
+						<p class="maturity-desc">{l.desc}</p>
+						<p class="maturity-unlock"><strong>Earned by:</strong> {l.unlock}</p>
+					</li>
+				))}
+			</ol>
+			<p class="section-desc ladder-footnote">
+				The jump that matters commercially is L2 to L3. Below that line, AI saves minutes and
+				hours, which is nice but invisible in the P&L. At L3 a person stops asking AI questions
+				and starts delegating work to it. That is where cycle time visibly drops.
+			</p>
+		</section>
+
+		<!-- Spec-based development -->
+		<section class="section" aria-labelledby="spec-heading">
+			<h2 id="spec-heading" class="section-title">Spec-based development: write it once, it never stops working</h2>
+			<p class="section-desc">
+				AI has made code cheap to produce. That, in turn, has made specs expensive to skip.
+				Ask a model to "preserve all existing functionality" without a spec, and the model
+				decides for itself what that means, from whatever files it happens to see. That is
+				where silent invention and conversion defects come from. Spec-based development closes
+				that door: a precise behavior spec, written before generation, that then works for you
+				at four different moments.
+			</p>
+			<div class="spec-grid">
+				{specMoments.map((s) => (
+					<div class="card">
+						<span class="spec-moment">{s.moment}</span>
+						<h3 class="card-title">{s.job}</h3>
+						<p class="card-text">{s.desc}</p>
+					</div>
+				))}
+			</div>
+			<p class="section-desc spec-footnote">
+				This closure is what changes the economics. Without it, AI output is fast to generate
+				and slow to trust. With it, the checking is generated, not performed. And there is a
+				flywheel: every defect that escapes goes back to improve the spec template.
+			</p>
+		</section>
+
+		<!-- Migration factory -->
+		<section class="section" aria-labelledby="factory-heading">
+			<h2 id="factory-heading" class="section-title">The migration factory</h2>
+			<p class="section-desc">
+				Legacy migration is the best enterprise use case for AI I have worked on, for a simple
+				reason: the old system <em>is</em> the specification. And a factory beats heroics.
+				Repeatable stations and per-station metrics turn a multi-year slog into a production
+				line you can manage.
+			</p>
+			<p class="section-desc">
+				A factory is not one-click automation. People hold three named control gates: spec
+				sign-off before any code is generated, an edge review during verification, and a release
+				approval made on evidence. Between the gates, the work is AI-assisted and instrumented.
+				Agentic autonomy inside a station, human judgment at the gates.
+			</p>
+			<div class="factory-flow" role="img" aria-label="Migration factory pipeline: scope, specify with gate 1 spec sign-off, generate, verify with gate 2 edge review, release with gate 3 release approval">
+				<div class="factory-station">
+					<span class="station-name">Scope</span>
+				</div>
+				<span class="factory-arrow">→</span>
+				<div class="factory-station factory-gated">
+					<span class="station-name">Specify</span>
+					<span class="gate-tag">Gate 1 · Spec sign-off</span>
+				</div>
+				<span class="factory-arrow">→</span>
+				<div class="factory-station">
+					<span class="station-name">Generate</span>
+				</div>
+				<span class="factory-arrow">→</span>
+				<div class="factory-station factory-gated">
+					<span class="station-name">Verify</span>
+					<span class="gate-tag">Gate 2 · Edge review</span>
+				</div>
+				<span class="factory-arrow">→</span>
+				<div class="factory-station factory-gated">
+					<span class="station-name">Release</span>
+					<span class="gate-tag">Gate 3 · Release approval</span>
+				</div>
+			</div>
+		</section>
+
+		<!-- Measurement ladder -->
+		<section class="section" aria-labelledby="measure-heading">
+			<h2 id="measure-heading" class="section-title">The measurement ladder</h2>
+			<p class="section-desc">
+				If you cannot measure it, you bought a demo. Most AI dashboards I review measure the
+				bottom rung and declare victory. The business case lives at the top, and climbing the
+				ladder is what separates a tooling rollout from a transformation.
+			</p>
+			<div class="measure-ladder">
+				{measurementRungs.map((r) => (
+					<div class={`measure-rung ${r.top ? 'measure-top' : ''}`}>
+						<span class="measure-name">{r.rung}</span>
+						<span class="measure-desc">{r.desc}</span>
+					</div>
+				))}
+			</div>
+		</section>
+
+		<!-- Full operating model: role x level matrix -->
+		<section class="section" aria-labelledby="model-heading">
+			<h2 id="model-heading" class="section-title">The full operating model: every role climbs the same ladder</h2>
+			<p class="section-desc">
+				An operating manual for the SDLC cannot stop at development. Requirements writing,
+				quality, documentation, and operations climb the same five levels, and in my experience
+				the organizations that get durable results move these functions up together, not
+				engineering alone. Here is what each level looks like in a normal work week, role by
+				role. L0 is omitted, since "not using AI" needs no example.
+			</p>
+			<div class="matrix-wrap">
+				<table class="matrix">
+					<thead>
+						<tr>
+							<th scope="col">Role</th>
+							<th scope="col">L1 Assisted</th>
+							<th scope="col">L2 Conversational</th>
+							<th scope="col">L3 Delegator</th>
+							<th scope="col">L4 Orchestrator</th>
+						</tr>
+					</thead>
+					<tbody>
+						{operatingModel.map((row) => (
+							<tr>
+								<th scope="row">{row.role}</th>
+								{row.cells.map((cell) => (
+									<td>{cell}</td>
+								))}
+							</tr>
+						))}
+					</tbody>
+				</table>
+			</div>
+			<p class="section-desc matrix-footnote">
+				Every cell stays reviewable by a human before anything ships. The level changes who does
+				the drafting, not who owns the outcome.
+			</p>
+		</section>
+
+		<!-- FAQ -->
+		<section class="section" aria-labelledby="faq-heading">
+			<h2 id="faq-heading" class="section-title">Common questions</h2>
+			<div class="faq-list">
+				{faqs.map((f) => (
+					<details class="faq-item">
+						<summary class="faq-q">{f.q}</summary>
+						<p class="faq-a">{f.a}</p>
+					</details>
+				))}
+			</div>
+		</section>
+
+		<NewsletterSignup />
+
+		<section class="section closing">
+			<h2 class="section-title">Bring this to your organization</h2>
+			<p class="section-desc">
+				I work with engineering leaders as a consultant and fractional CTO to assess maturity,
+				design the rollout, and hold the measurement seat. If your organization is starting this
+				journey, or is stuck somewhere in the middle of it, I would love to compare notes.
+			</p>
+			<a href="/contact/?type=consultation" class="cta-button">Schedule A Free Consultation</a>
+		</section>
+	</main>
+	<Footer />
+</BaseLayout>
+
+<style>
+	.main {
+		max-width: 1000px;
+		margin: 0 auto;
+		padding: 8rem 1.5rem 4rem;
+	}
+	.hero {
+		margin-bottom: 3rem;
+	}
+	.title {
+		font-size: 2.75rem;
+		font-weight: 700;
+		color: #1a1a1a;
+		margin-bottom: 1rem;
+	}
+	.subtitle {
+		font-size: 1.25rem;
+		line-height: 1.7;
+		color: #444;
+		max-width: 720px;
+	}
+	.section {
+		margin: 4rem 0;
+	}
+	.section-title {
+		font-size: 2rem;
+		font-weight: 700;
+		color: #1a1a1a;
+		margin-bottom: 1rem;
+	}
+	.section-desc {
+		font-size: 1.15rem;
+		line-height: 1.7;
+		color: #555;
+		max-width: 720px;
+		margin-bottom: 2rem;
+	}
+
+	.two-col {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 2rem;
+	}
+	.card {
+		background: #f8f9fa;
+		border-radius: 8px;
+		padding: 2rem;
+		border: 1px solid #e0e0e0;
+	}
+	.card-muted {
+		border-left: 4px solid #bbb;
+	}
+	.card-accent {
+		border-left: 4px solid #e67e22;
+	}
+	.card-title {
+		font-size: 1.35rem;
+		font-weight: 600;
+		color: #333;
+		margin: 0 0 0.75rem;
+	}
+	.card-text {
+		font-size: 1.05rem;
+		line-height: 1.7;
+		color: #555;
+		margin: 0;
+	}
+
+	.maturity-ladder {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+	.maturity-step {
+		background: #f8f9fa;
+		border-radius: 8px;
+		border-left: 4px solid #e67e22;
+		padding: 1.5rem 2rem;
+		margin-left: calc((var(--step) - 1) * 3rem);
+	}
+	@media (max-width: 700px) {
+		.maturity-step {
+			margin-left: 0;
+		}
+	}
+	.maturity-level {
+		font-size: 0.8rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		color: #e67e22;
+	}
+	.maturity-name {
+		font-size: 1.3rem;
+		font-weight: 600;
+		color: #1a1a1a;
+		margin: 0.25rem 0 0.5rem;
+	}
+	.maturity-desc {
+		font-size: 1.02rem;
+		line-height: 1.6;
+		color: #555;
+		margin: 0;
+	}
+	.maturity-unlock {
+		font-size: 0.95rem;
+		line-height: 1.5;
+		color: #7a4a12;
+		margin: 0.6rem 0 0;
+	}
+	.maturity-unlock strong {
+		color: #e67e22;
+		text-transform: uppercase;
+		font-size: 0.78rem;
+		letter-spacing: 0.04em;
+	}
+	.ladder-footnote {
+		margin-top: 1.5rem;
+		margin-bottom: 0;
+	}
+
+	.matrix-wrap {
+		overflow-x: auto;
+		border: 1px solid #e0e0e0;
+		border-radius: 8px;
+	}
+	.matrix {
+		border-collapse: collapse;
+		width: 100%;
+		min-width: 860px;
+		font-size: 0.95rem;
+	}
+	.matrix th,
+	.matrix td {
+		text-align: left;
+		vertical-align: top;
+		padding: 0.9rem 1rem;
+		border-bottom: 1px solid #e0e0e0;
+		line-height: 1.5;
+	}
+	.matrix thead th {
+		background: #f8f9fa;
+		color: #e67e22;
+		font-size: 0.82rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+		border-bottom: 2px solid #e67e22;
+		white-space: nowrap;
+	}
+	.matrix tbody th {
+		background: #f8f9fa;
+		color: #1a1a1a;
+		font-weight: 600;
+		min-width: 150px;
+	}
+	.matrix tbody td {
+		color: #555;
+	}
+	.matrix tbody tr:last-child th,
+	.matrix tbody tr:last-child td {
+		border-bottom: none;
+	}
+	.matrix-footnote {
+		margin-top: 1.5rem;
+		margin-bottom: 0;
+	}
+
+	.spec-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+		gap: 1.5rem;
+	}
+	.spec-moment {
+		display: block;
+		font-size: 0.78rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: #e67e22;
+		margin-bottom: 0.5rem;
+	}
+	.spec-footnote {
+		margin-top: 1.5rem;
+		margin-bottom: 0;
+	}
+
+	.factory-flow {
+		display: flex;
+		align-items: stretch;
+		gap: 0.75rem;
+		flex-wrap: wrap;
+	}
+	.factory-station {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: 0.4rem;
+		background: #f8f9fa;
+		border: 1px solid #e0e0e0;
+		border-radius: 8px;
+		padding: 1rem 1.4rem;
+	}
+	.station-name {
+		font-size: 1.05rem;
+		font-weight: 600;
+		color: #333;
+	}
+	.factory-gated {
+		border: 2px solid #e67e22;
+	}
+	.gate-tag {
+		font-size: 0.78rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+		color: #e67e22;
+		white-space: nowrap;
+	}
+	.factory-arrow {
+		align-self: center;
+		color: #e67e22;
+		font-size: 1.4rem;
+		font-weight: 700;
+	}
+
+	.measure-ladder {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		max-width: 720px;
+	}
+	.measure-rung {
+		display: flex;
+		align-items: baseline;
+		gap: 1.25rem;
+		background: #f8f9fa;
+		border: 1px solid #e0e0e0;
+		border-radius: 8px;
+		padding: 1.1rem 1.5rem;
+	}
+	.measure-top {
+		border: 2px solid #e67e22;
+	}
+	.measure-name {
+		font-size: 1.1rem;
+		font-weight: 700;
+		color: #1a1a1a;
+		min-width: 110px;
+	}
+	.measure-top .measure-name {
+		color: #e67e22;
+	}
+	.measure-desc {
+		font-size: 1rem;
+		line-height: 1.55;
+		color: #555;
+	}
+
+	.faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		max-width: 780px;
+	}
+	.faq-item {
+		background: #f8f9fa;
+		border: 1px solid #e0e0e0;
+		border-radius: 8px;
+		padding: 1rem 1.5rem;
+	}
+	.faq-q {
+		font-size: 1.1rem;
+		font-weight: 600;
+		color: #1a1a1a;
+		cursor: pointer;
+	}
+	.faq-a {
+		font-size: 1.02rem;
+		line-height: 1.7;
+		color: #555;
+		margin: 0.75rem 0 0.25rem;
+	}
+
+	.closing {
+		text-align: left;
+	}
+	.cta-button {
+		display: inline-block;
+		background: #e67e22;
+		color: white;
+		text-decoration: none;
+		padding: 1rem 2rem;
+		font-size: 1.125rem;
+		font-weight: 600;
+		border-radius: 8px;
+	}
+	.cta-button:hover {
+		background: #d35400;
+	}
+</style>

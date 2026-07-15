@@ -1,0 +1,35 @@
+# Ajay K Madan - AI-SDLC Transformation Consultant & Fractional CTO
+
+> Ajay K Madan helps medium and large enterprises adopt AI across the software
+> development lifecycle: fast, measured, and safe. 25 years of experience
+> building enterprise-grade products from early-stage startups to mature global
+> companies. Based in India, working with clients globally.
+
+## What Ajay consults on
+
+- AI-SDLC transformation: AI maturity assessment, rollout strategy, change
+  management, and the safeguards (specs, quality gates, measurement, governance)
+  that make AI-driven speed trustworthy, including in regulated industries such
+  as healthcare and finance.
+- Legacy migration acceleration with AI: repeatable, factory-style migration
+  pipelines with human control gates, for enterprises carrying large migration
+  tech debt.
+- Spec-based development: behavior specs as the contract that makes AI output
+  verifiable instead of merely plausible.
+- Engineering measurement: proving AI adoption works with outcome metrics, not
+  seat counts; annual distillations of the DORA State of DevOps research.
+- Fractional CTO / VP Engineering, engineering leadership, post-merger technology
+  integration, offshore development center setup.
+
+## Key pages
+
+- [Blog](https://ajaykmadan.in/blog/): essays on AI-SDLC, DORA report summaries,
+  engineering leadership, and post-merger integration.
+- [Projects](https://ajaykmadan.in/projects/key-projects/): anonymized client case studies.
+- [About](https://ajaykmadan.in/about/): background and experience.
+- [Contact](https://ajaykmadan.in/contact/): schedule a free consultation.
+
+## Contact
+
+- Website: https://ajaykmadan.in
+- LinkedIn: https://www.linkedin.com/in/ajaykmadan/

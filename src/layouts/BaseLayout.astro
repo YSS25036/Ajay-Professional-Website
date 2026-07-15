@@ -5,7 +5,7 @@ interface Props {
 	ogImage?: string;
 }
 
-const { title, description = "Ajay K Madan - Technology Leadership, AI adoption & change management. 25 yrs building enterprise products. AI SDLC, AI coding tools, technology transformation.", ogImage } = Astro.props;
+const { title, description = "Ajay K Madan - AI-SDLC transformation consultant & Fractional CTO. Helping medium and large enterprises adopt AI across the software development lifecycle: fast, measured, and safe. 25 yrs building enterprise products.", ogImage } = Astro.props;
 const gaId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
 const gscVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
 const site = Astro.site?.href ?? 'https://ajaykmadan.in';
@@ -52,8 +52,9 @@ const fullTitle = `${title} - Ajay K Madan`;
 					"@id": `${site}#person`,
 					"name": "Ajay K Madan",
 					"url": site,
-					"jobTitle": "Technology Leader, Fractional CTO, Engineering Leadership Consultant",
-					"description": "Technology Leader with 25 years of experience. Fractional CTO, Engineering Leadership consultant. AI adoption, change management, M&A technology integration, offshore development.",
+					"jobTitle": "AI-SDLC Transformation Consultant, Fractional CTO",
+					"description": "Consultant helping medium and large enterprises adopt AI across the software development lifecycle: AI-SDLC maturity assessment, migration factories, spec-driven development, measurement and governance. Also: engineering leadership, M&A technology integration, offshore development. 25 years building enterprise products.",
+					"knowsAbout": ["AI SDLC", "AI-assisted software development", "spec-driven development", "legacy migration with AI", "engineering metrics and DORA", "AI governance in regulated industries", "fractional CTO leadership"],
 					"image": defaultOgImage,
 					"sameAs": ["https://www.linkedin.com/in/ajaykmadan/"]
 				},
@@ -62,9 +63,9 @@ const fullTitle = `${title} - Ajay K Madan`;
 					"@id": `${site}#service`,
 					"name": "Ajay K Madan - Technology Leadership",
 					"url": site,
-					"description": "Fractional CTO and Technology Leadership consulting. Engineering leadership, AI adoption, change management, post-merger integration, offshore development. 25 years building enterprise products.",
+					"description": "AI-SDLC transformation and Fractional CTO consulting for medium and large enterprises: AI maturity assessment, rollout strategy with safeguards, migration factories, spec-driven development, measurement and governance. Plus engineering leadership, post-merger integration, offshore development.",
 					"provider": { "@id": `${site}#person` },
-					"serviceType": ["Fractional CTO", "Technology Consultant", "Engineering Leadership", "AI Adoption Consulting", "M&A Technology Integration"],
+					"serviceType": ["AI SDLC Transformation", "AI Adoption Consulting", "Fractional CTO", "Engineering Leadership", "Technology Consultant", "M&A Technology Integration"],
 					"areaServed": { "@type": "Place", "name": "Global" }
 				}
 			]
