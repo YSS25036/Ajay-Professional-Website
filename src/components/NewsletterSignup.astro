@@ -1,0 +1,92 @@
+---
+const formEndpoint = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT || 'your-form-id';
+---
+
+<section class="newsletter" aria-labelledby="newsletter-heading">
+	<div class="newsletter-inner">
+		<h2 id="newsletter-heading" class="newsletter-title">Essays on AI-SDLC, straight to your inbox</h2>
+		<p class="newsletter-text">
+			Frameworks and field notes on adopting AI in enterprise software delivery.
+			No schedule, no spam — only when I write.
+		</p>
+		<form class="newsletter-form" action={`https://formspree.io/f/${formEndpoint}`} method="POST">
+			<input type="hidden" name="form-type" value="newsletter-signup" />
+			<input type="hidden" name="_subject" value="New newsletter signup — ajaykmadan.in" />
+			<label class="sr-only" for="newsletter-email">Email address</label>
+			<input
+				id="newsletter-email"
+				class="newsletter-input"
+				type="email"
+				name="email"
+				placeholder="you@company.com"
+				required
+			/>
+			<button type="submit" class="newsletter-button">Subscribe</button>
+		</form>
+	</div>
+</section>
+
+<style>
+	.newsletter {
+		background: #f8f9fa;
+		border-radius: 8px;
+		border-left: 4px solid #e67e22;
+		padding: 2.5rem 2rem;
+		margin: 4rem 0;
+	}
+	.newsletter-inner {
+		max-width: 640px;
+	}
+	.newsletter-title {
+		font-size: 1.6rem;
+		font-weight: 700;
+		color: #1a1a1a;
+		margin: 0 0 0.75rem;
+	}
+	.newsletter-text {
+		font-size: 1.1rem;
+		line-height: 1.6;
+		color: #555;
+		margin: 0 0 1.5rem;
+	}
+	.newsletter-form {
+		display: flex;
+		gap: 0.75rem;
+		flex-wrap: wrap;
+	}
+	.newsletter-input {
+		flex: 1;
+		min-width: 220px;
+		padding: 0.8rem 1rem;
+		font-size: 1rem;
+		border: 1px solid #ccc;
+		border-radius: 6px;
+	}
+	.newsletter-input:focus {
+		outline: none;
+		border-color: #e67e22;
+	}
+	.newsletter-button {
+		background: #e67e22;
+		color: white;
+		border: none;
+		padding: 0.8rem 1.75rem;
+		font-size: 1rem;
+		font-weight: 600;
+		border-radius: 6px;
+		cursor: pointer;
+	}
+	.newsletter-button:hover {
+		background: #d35400;
+	}
+	.sr-only {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		border: 0;
+	}
+</style>

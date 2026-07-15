@@ -1,0 +1,411 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import NewsletterSignup from '../components/NewsletterSignup.astro';
+
+const maturityLevels = [
+	{ level: 1, name: 'Assisted', desc: 'Autocomplete and suggestions inside the IDE. Individual productivity, no process change.' },
+	{ level: 2, name: 'Conversational', desc: 'Developers ask, AI answers — explanations, drafts, reviews. Still human-driven at every step.' },
+	{ level: 3, name: 'Spec-Driven', desc: 'Behavior specs become the contract. AI generates against specs; output is verifiable, not just plausible.' },
+	{ level: 4, name: 'Agentic with Gates', desc: 'Agents execute multi-step work inside quality gates — tests, reviews, and human approval at defined checkpoints.' },
+	{ level: 5, name: 'Orchestrated', desc: 'Pipelines of agents run repeatable workflows end-to-end. Humans hold the map: goals, gates, and measurement.' },
+];
+
+const specJobs = [
+	{ job: 'Code', desc: 'The generation target — AI builds against the spec, not a vague prompt' },
+	{ job: 'Tests', desc: 'Acceptance criteria become test cases — verification comes free' },
+	{ job: 'Review', desc: 'Reviewers check conformance to the spec, not intent guessed from a diff' },
+	{ job: 'Docs', desc: 'The spec is living documentation of what the system actually does' },
+];
+
+const measurementRungs = [
+	{ rung: 'Outcome', desc: 'Cycle time, throughput, escaped defects trend — what the CFO cares about', top: true },
+	{ rung: 'Quality', desc: 'Rework rate, defect escape rate, review findings on AI-generated code', top: false },
+	{ rung: 'Usage', desc: 'Adoption, acceptance rates, tool engagement', top: false },
+	{ rung: 'Cost', desc: 'Seats, tokens, licenses — where most dashboards stop', top: false },
+];
+
+const faqs = [
+	{
+		q: 'How should a medium or large enterprise roll out AI coding tools safely?',
+		a: 'Not tool-first — system-first. Assess where each team sits on the maturity ladder, introduce specs and quality gates before expanding autonomy, and instrument measurement from day one. Speed without verification is rework on a delay.',
+	},
+	{
+		q: 'What is spec-driven development in an AI context?',
+		a: 'Writing a precise behavior specification before generation, so AI output can be verified against a contract instead of eyeballed. One spec does four jobs: it drives the code, the tests, the review, and the documentation.',
+	},
+	{
+		q: 'Can AI really accelerate legacy migrations?',
+		a: 'Yes — migrations are AI’s best enterprise use case, because the legacy system itself is the specification. A factory pattern (golden reference → behavior spec → generate → verify → human quality gate) makes the work repeatable and measurable instead of heroic.',
+	},
+	{
+		q: 'How do you measure whether AI adoption is actually working?',
+		a: 'Climb the ladder: cost, usage, quality, outcome. Most dashboards stop at cost and usage. The signal that matters is at the top — cycle time, throughput, and escaped-defect trends on AI-assisted work.',
+	},
+	{
+		q: 'What changes for AI adoption in regulated industries like healthcare or finance?',
+		a: 'The ground rules come first: approved-tool boundaries, data-residency and PHI/PII controls, human accountability at every gate, and audit trails for AI-generated code. The maturity ladder still applies — the gates are simply non-negotiable.',
+	},
+];
+---
+
+<BaseLayout
+	title="AI-SDLC Frameworks"
+	description="Frameworks for adopting AI across the software development lifecycle in medium and large enterprises: the 5-level AI-SDLC maturity model, spec-driven development, migration factories, and the measurement ladder. By Ajay K Madan."
+>
+	<Header />
+	<script type="application/ld+json" set:html={JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		"mainEntity": faqs.map((f) => ({
+			"@type": "Question",
+			"name": f.q,
+			"acceptedAnswer": { "@type": "Answer", "text": f.a },
+		})),
+	})} />
+	<main class="main">
+		<section class="hero">
+			<h1 class="title">The AI-SDLC Operating Manual</h1>
+			<p class="subtitle">
+				Everyone tells enterprises to go faster with AI. Almost nobody shows them how to go faster
+				<em>safely</em> — with specs, gates, measurement, and institutional memory.
+				These are the frameworks I use in real engagements.
+			</p>
+		</section>
+
+		<!-- Speed vs Trust -->
+		<section class="section" aria-labelledby="trust-heading">
+			<h2 id="trust-heading" class="section-title">Speed you can't trust isn't speed</h2>
+			<div class="two-col">
+				<div class="card card-muted">
+					<h3 class="card-title">🪴 Potted plants</h3>
+					<p class="card-text">
+						Quick AI wins — impressive demos, fast prototypes, individual productivity boosts.
+						Portable, photogenic, and shallow-rooted. They wilt the moment production pressure hits.
+					</p>
+				</div>
+				<div class="card card-accent">
+					<h3 class="card-title">🌳 The rooted tree</h3>
+					<p class="card-text">
+						Enterprise AI adoption that lasts grows a root system first: behavior specs,
+						review gates, measurement, and compliance-aware ground rules. Slower to plant.
+						Compounds for years.
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- Maturity model -->
+		<section class="section" aria-labelledby="maturity-heading">
+			<h2 id="maturity-heading" class="section-title">The 5-level AI-SDLC maturity model</h2>
+			<p class="section-desc">
+				Most organizations believe they're at level 3. Most are at level 1.
+				Each level is unlocked by a safeguard, not a tool purchase.
+			</p>
+			<ol class="maturity-ladder">
+				{maturityLevels.map((l) => (
+					<li class="maturity-step" style={`--step: ${l.level}`}>
+						<span class="maturity-level">Level {l.level}</span>
+						<h3 class="maturity-name">{l.name}</h3>
+						<p class="maturity-desc">{l.desc}</p>
+					</li>
+				))}
+			</ol>
+		</section>
+
+		<!-- Spec closure -->
+		<section class="section" aria-labelledby="spec-heading">
+			<h2 id="spec-heading" class="section-title">Write the spec once. It does four jobs.</h2>
+			<p class="section-desc">
+				AI made code cheap — which made specs expensive to skip. A precise behavior spec is the
+				contract that turns "plausible" AI output into verifiable engineering.
+			</p>
+			<div class="spec-grid">
+				{specJobs.map((s) => (
+					<div class="card">
+						<h3 class="card-title">{s.job}</h3>
+						<p class="card-text">{s.desc}</p>
+					</div>
+				))}
+			</div>
+		</section>
+
+		<!-- Migration factory -->
+		<section class="section" aria-labelledby="factory-heading">
+			<h2 id="factory-heading" class="section-title">The migration factory</h2>
+			<p class="section-desc">
+				Legacy migration is AI's best enterprise use case: the old system <em>is</em> the specification.
+				A factory beats heroics — repeatable stations, measurable throughput, a quality gate at every step.
+			</p>
+			<div class="factory-flow" role="img" aria-label="Migration factory pipeline: golden reference, behavior spec, generate, verify, human quality gate">
+				<span class="factory-station">Golden reference</span>
+				<span class="factory-arrow">→</span>
+				<span class="factory-station">Behavior spec</span>
+				<span class="factory-arrow">→</span>
+				<span class="factory-station">Generate</span>
+				<span class="factory-arrow">→</span>
+				<span class="factory-station">Verify</span>
+				<span class="factory-arrow">→</span>
+				<span class="factory-station factory-gate">Human quality gate</span>
+			</div>
+		</section>
+
+		<!-- Measurement ladder -->
+		<section class="section" aria-labelledby="measure-heading">
+			<h2 id="measure-heading" class="section-title">The measurement ladder</h2>
+			<p class="section-desc">
+				If you can't measure it, you bought a demo. Most AI dashboards measure the bottom rung
+				and declare victory — the business case lives at the top.
+			</p>
+			<div class="measure-ladder">
+				{measurementRungs.map((r) => (
+					<div class={`measure-rung ${r.top ? 'measure-top' : ''}`}>
+						<span class="measure-name">{r.rung}</span>
+						<span class="measure-desc">{r.desc}</span>
+					</div>
+				))}
+			</div>
+		</section>
+
+		<!-- FAQ -->
+		<section class="section" aria-labelledby="faq-heading">
+			<h2 id="faq-heading" class="section-title">Common questions</h2>
+			<div class="faq-list">
+				{faqs.map((f) => (
+					<details class="faq-item">
+						<summary class="faq-q">{f.q}</summary>
+						<p class="faq-a">{f.a}</p>
+					</details>
+				))}
+			</div>
+		</section>
+
+		<NewsletterSignup />
+
+		<section class="section closing">
+			<h2 class="section-title">Bring this to your organization</h2>
+			<p class="section-desc">
+				I work with engineering leaders as a consultant and fractional CTO to assess maturity,
+				design the rollout, and hold the measurement seat.
+			</p>
+			<a href="/contact/?type=consultation" class="cta-button">Schedule A Free Consultation</a>
+		</section>
+	</main>
+	<Footer />
+</BaseLayout>
+
+<style>
+	.main {
+		max-width: 1000px;
+		margin: 0 auto;
+		padding: 8rem 1.5rem 4rem;
+	}
+	.hero {
+		margin-bottom: 3rem;
+	}
+	.title {
+		font-size: 2.75rem;
+		font-weight: 700;
+		color: #1a1a1a;
+		margin-bottom: 1rem;
+	}
+	.subtitle {
+		font-size: 1.25rem;
+		line-height: 1.7;
+		color: #444;
+		max-width: 720px;
+	}
+	.section {
+		margin: 4rem 0;
+	}
+	.section-title {
+		font-size: 2rem;
+		font-weight: 700;
+		color: #1a1a1a;
+		margin-bottom: 1rem;
+	}
+	.section-desc {
+		font-size: 1.15rem;
+		line-height: 1.7;
+		color: #555;
+		max-width: 720px;
+		margin-bottom: 2rem;
+	}
+
+	.two-col {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 2rem;
+	}
+	.card {
+		background: #f8f9fa;
+		border-radius: 8px;
+		padding: 2rem;
+		border: 1px solid #e0e0e0;
+	}
+	.card-muted {
+		border-left: 4px solid #bbb;
+	}
+	.card-accent {
+		border-left: 4px solid #e67e22;
+	}
+	.card-title {
+		font-size: 1.35rem;
+		font-weight: 600;
+		color: #333;
+		margin: 0 0 0.75rem;
+	}
+	.card-text {
+		font-size: 1.05rem;
+		line-height: 1.7;
+		color: #555;
+		margin: 0;
+	}
+
+	.maturity-ladder {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+	.maturity-step {
+		background: #f8f9fa;
+		border-radius: 8px;
+		border-left: 4px solid #e67e22;
+		padding: 1.5rem 2rem;
+		margin-left: calc((var(--step) - 1) * 3rem);
+	}
+	@media (max-width: 700px) {
+		.maturity-step {
+			margin-left: 0;
+		}
+	}
+	.maturity-level {
+		font-size: 0.8rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		color: #e67e22;
+	}
+	.maturity-name {
+		font-size: 1.3rem;
+		font-weight: 600;
+		color: #1a1a1a;
+		margin: 0.25rem 0 0.5rem;
+	}
+	.maturity-desc {
+		font-size: 1.02rem;
+		line-height: 1.6;
+		color: #555;
+		margin: 0;
+	}
+
+	.spec-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+		gap: 1.5rem;
+	}
+
+	.factory-flow {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		flex-wrap: wrap;
+	}
+	.factory-station {
+		background: #f8f9fa;
+		border: 1px solid #e0e0e0;
+		border-radius: 8px;
+		padding: 1rem 1.4rem;
+		font-size: 1.05rem;
+		font-weight: 600;
+		color: #333;
+	}
+	.factory-gate {
+		border: 2px solid #e67e22;
+		color: #e67e22;
+	}
+	.factory-arrow {
+		color: #e67e22;
+		font-size: 1.4rem;
+		font-weight: 700;
+	}
+
+	.measure-ladder {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		max-width: 720px;
+	}
+	.measure-rung {
+		display: flex;
+		align-items: baseline;
+		gap: 1.25rem;
+		background: #f8f9fa;
+		border: 1px solid #e0e0e0;
+		border-radius: 8px;
+		padding: 1.1rem 1.5rem;
+	}
+	.measure-top {
+		border: 2px solid #e67e22;
+	}
+	.measure-name {
+		font-size: 1.1rem;
+		font-weight: 700;
+		color: #1a1a1a;
+		min-width: 110px;
+	}
+	.measure-top .measure-name {
+		color: #e67e22;
+	}
+	.measure-desc {
+		font-size: 1rem;
+		line-height: 1.55;
+		color: #555;
+	}
+
+	.faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		max-width: 780px;
+	}
+	.faq-item {
+		background: #f8f9fa;
+		border: 1px solid #e0e0e0;
+		border-radius: 8px;
+		padding: 1rem 1.5rem;
+	}
+	.faq-q {
+		font-size: 1.1rem;
+		font-weight: 600;
+		color: #1a1a1a;
+		cursor: pointer;
+	}
+	.faq-a {
+		font-size: 1.02rem;
+		line-height: 1.7;
+		color: #555;
+		margin: 0.75rem 0 0.25rem;
+	}
+
+	.closing {
+		text-align: left;
+	}
+	.cta-button {
+		display: inline-block;
+		background: #e67e22;
+		color: white;
+		text-decoration: none;
+		padding: 1rem 2rem;
+		font-size: 1.125rem;
+		font-weight: 600;
+		border-radius: 8px;
+	}
+	.cta-button:hover {
+		background: #d35400;
+	}
+</style>

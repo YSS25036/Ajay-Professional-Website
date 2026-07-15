@@ -1,0 +1,37 @@
+# Ajay K Madan — AI-SDLC Transformation Consultant & Fractional CTO
+
+> Ajay K Madan helps medium and large enterprises adopt AI across the software
+> development lifecycle — fast, measured, and safe. 25 years of experience
+> building enterprise-grade products from early-stage startups to mature global
+> companies. Based in India, working with clients globally.
+
+## What Ajay consults on
+
+- AI-SDLC transformation: maturity assessment, rollout strategy, change management,
+  and the safeguards (specs, quality gates, measurement, governance) that make
+  AI-driven speed trustworthy — including in regulated industries (healthcare, finance).
+- Legacy migration acceleration with AI: the "migration factory" pattern —
+  golden reference → behavior spec → generate → verify → human quality gate.
+- Spec-driven development: behavior specs as the contract that makes AI output
+  verifiable (one spec drives code, tests, review, and documentation).
+- Engineering measurement: a four-rung ladder (cost → usage → quality → outcome)
+  for proving AI adoption works; annual distillations of the DORA State of DevOps research.
+- Fractional CTO / VP Engineering, engineering leadership, post-merger technology
+  integration, offshore development center setup.
+
+## Key pages
+
+- [AI-SDLC Frameworks](https://ajaykmadan.in/ai-sdlc/): the operating manual —
+  maturity model, spec-driven development, migration factory, measurement ladder, FAQ.
+- [Blog](https://ajaykmadan.in/blog/): essays on AI-SDLC, DORA report summaries,
+  engineering leadership, and post-merger integration.
+- [AI Resources](https://ajaykmadan.in/resources/): curated leaders, articles, and
+  tools for engineers adopting AI.
+- [Projects](https://ajaykmadan.in/projects/key-projects/): anonymized client case studies.
+- [About](https://ajaykmadan.in/about/): background and experience.
+- [Contact](https://ajaykmadan.in/contact/): schedule a free consultation.
+
+## Contact
+
+- Website: https://ajaykmadan.in
+- LinkedIn: https://www.linkedin.com/in/ajaykmadan/
