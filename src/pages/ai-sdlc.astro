@@ -5,47 +5,47 @@ import Footer from '../components/Footer.astro';
 import NewsletterSignup from '../components/NewsletterSignup.astro';
 
 const maturityLevels = [
-	{ level: 1, name: 'Assisted', desc: 'Autocomplete and suggestions inside the IDE. Individual productivity, no process change.' },
-	{ level: 2, name: 'Conversational', desc: 'Developers ask, AI answers — explanations, drafts, reviews. Still human-driven at every step.' },
-	{ level: 3, name: 'Spec-Driven', desc: 'Behavior specs become the contract. AI generates against specs; output is verifiable, not just plausible.' },
-	{ level: 4, name: 'Agentic with Gates', desc: 'Agents execute multi-step work inside quality gates — tests, reviews, and human approval at defined checkpoints.' },
-	{ level: 5, name: 'Orchestrated', desc: 'Pipelines of agents run repeatable workflows end-to-end. Humans hold the map: goals, gates, and measurement.' },
+	{ level: 1, name: 'Assisted', desc: 'Autocomplete and suggestions inside the IDE. Individual productivity improves, but nothing changes in the process.' },
+	{ level: 2, name: 'Conversational', desc: 'Developers ask, AI answers: explanations, drafts, reviews. Useful, but still human-driven at every step.' },
+	{ level: 3, name: 'Spec-Driven', desc: 'Behavior specs become the contract. AI generates against the spec, so the output is verifiable, not just plausible.' },
+	{ level: 4, name: 'Agentic with Gates', desc: 'Agents execute multi-step work inside quality gates, with tests, reviews, and human approval at defined checkpoints.' },
+	{ level: 5, name: 'Orchestrated', desc: 'Pipelines of agents run repeatable workflows end to end. Humans hold the map: goals, gates, and measurement.' },
 ];
 
 const specJobs = [
-	{ job: 'Code', desc: 'The generation target — AI builds against the spec, not a vague prompt' },
-	{ job: 'Tests', desc: 'Acceptance criteria become test cases — verification comes free' },
-	{ job: 'Review', desc: 'Reviewers check conformance to the spec, not intent guessed from a diff' },
-	{ job: 'Docs', desc: 'The spec is living documentation of what the system actually does' },
+	{ job: 'Code', desc: 'The spec is the generation target. AI builds against a contract, not a vague prompt.' },
+	{ job: 'Tests', desc: 'Acceptance criteria translate directly into test cases, so verification comes almost free.' },
+	{ job: 'Review', desc: 'Reviewers check conformance to the spec instead of guessing intent from a diff.' },
+	{ job: 'Docs', desc: 'The spec becomes living documentation of what the system actually does.' },
 ];
 
 const measurementRungs = [
-	{ rung: 'Outcome', desc: 'Cycle time, throughput, escaped defects trend — what the CFO cares about', top: true },
-	{ rung: 'Quality', desc: 'Rework rate, defect escape rate, review findings on AI-generated code', top: false },
-	{ rung: 'Usage', desc: 'Adoption, acceptance rates, tool engagement', top: false },
-	{ rung: 'Cost', desc: 'Seats, tokens, licenses — where most dashboards stop', top: false },
+	{ rung: 'Outcome', desc: 'Cycle time, throughput, and the trend in escaped defects. This is the rung your CFO cares about.', top: true },
+	{ rung: 'Quality', desc: 'Rework rate, defect escape rate, and review findings on AI-generated code.', top: false },
+	{ rung: 'Usage', desc: 'Adoption, acceptance rates, and how deeply teams engage with the tools.', top: false },
+	{ rung: 'Cost', desc: 'Seats, tokens, and licenses. This is where most dashboards stop.', top: false },
 ];
 
 const faqs = [
 	{
 		q: 'How should a medium or large enterprise roll out AI coding tools safely?',
-		a: 'Not tool-first — system-first. Assess where each team sits on the maturity ladder, introduce specs and quality gates before expanding autonomy, and instrument measurement from day one. Speed without verification is rework on a delay.',
+		a: 'Not tool-first, system-first. Assess where each team sits on the maturity ladder, introduce specs and quality gates before expanding autonomy, and instrument measurement from day one. Speed without verification is rework on a delay.',
 	},
 	{
 		q: 'What is spec-driven development in an AI context?',
-		a: 'Writing a precise behavior specification before generation, so AI output can be verified against a contract instead of eyeballed. One spec does four jobs: it drives the code, the tests, the review, and the documentation.',
+		a: 'It means writing a precise behavior specification before generation, so AI output can be verified against a contract instead of eyeballed. One spec does four jobs: it drives the code, the tests, the review, and the documentation.',
 	},
 	{
 		q: 'Can AI really accelerate legacy migrations?',
-		a: 'Yes — migrations are AI’s best enterprise use case, because the legacy system itself is the specification. A factory pattern (golden reference → behavior spec → generate → verify → human quality gate) makes the work repeatable and measurable instead of heroic.',
+		a: 'Yes. Migrations are the best enterprise use case for AI I have worked on, because the legacy system itself is the specification. A factory pattern (golden reference, behavior spec, generate, verify, human quality gate) makes the work repeatable and measurable instead of heroic.',
 	},
 	{
 		q: 'How do you measure whether AI adoption is actually working?',
-		a: 'Climb the ladder: cost, usage, quality, outcome. Most dashboards stop at cost and usage. The signal that matters is at the top — cycle time, throughput, and escaped-defect trends on AI-assisted work.',
+		a: 'Climb the ladder: cost, usage, quality, outcome. Most dashboards stop at cost and usage. The signal that matters is at the top: cycle time, throughput, and the trend in escaped defects on AI-assisted work.',
 	},
 	{
 		q: 'What changes for AI adoption in regulated industries like healthcare or finance?',
-		a: 'The ground rules come first: approved-tool boundaries, data-residency and PHI/PII controls, human accountability at every gate, and audit trails for AI-generated code. The maturity ladder still applies — the gates are simply non-negotiable.',
+		a: 'The ground rules come first: approved-tool boundaries, data-residency and PHI/PII controls, human accountability at every gate, and audit trails for AI-generated code. The maturity ladder still applies. The gates are simply non-negotiable.',
 	},
 ];
 ---
@@ -68,29 +68,38 @@ const faqs = [
 		<section class="hero">
 			<h1 class="title">The AI-SDLC Operating Manual</h1>
 			<p class="subtitle">
-				Everyone tells enterprises to go faster with AI. Almost nobody shows them how to go faster
-				<em>safely</em> — with specs, gates, measurement, and institutional memory.
-				These are the frameworks I use in real engagements.
+				There is no shortage of advice telling enterprises to move faster with AI. What I found
+				missing, both in my reading and in my consulting engagements, is practical guidance on how
+				to do it <em>safely</em>: with specs, quality gates, measurement, and ground rules that
+				regulated businesses cannot skip. These are the frameworks I use in real engagements,
+				shared here openly. I would love to hear how they hold up against your experience.
 			</p>
 		</section>
 
 		<!-- Speed vs Trust -->
 		<section class="section" aria-labelledby="trust-heading">
-			<h2 id="trust-heading" class="section-title">Speed you can't trust isn't speed</h2>
+			<h2 id="trust-heading" class="section-title">Start with speed vs. trust</h2>
+			<p class="section-desc">
+				Every AI adoption journey I have observed eventually runs into the same tension: the speed
+				the tools promise versus the trust the business requires. I find a gardening analogy useful
+				for explaining it to executive teams.
+			</p>
 			<div class="two-col">
 				<div class="card card-muted">
 					<h3 class="card-title">🪴 Potted plants</h3>
 					<p class="card-text">
-						Quick AI wins — impressive demos, fast prototypes, individual productivity boosts.
-						Portable, photogenic, and shallow-rooted. They wilt the moment production pressure hits.
+						Quick AI wins are like potted plants. They look impressive in a demo, they move around
+						easily, and they photograph well. But the roots are shallow. When production pressure,
+						compliance questions, or team turnover arrive, they wilt.
 					</p>
 				</div>
 				<div class="card card-accent">
 					<h3 class="card-title">🌳 The rooted tree</h3>
 					<p class="card-text">
-						Enterprise AI adoption that lasts grows a root system first: behavior specs,
-						review gates, measurement, and compliance-aware ground rules. Slower to plant.
-						Compounds for years.
+						Adoption that lasts grows a root system first: behavior specs, review gates,
+						measurement, and ground rules that respect your compliance reality. It is slower to
+						plant, and it compounds for years. Speed you cannot trust is not speed. It is rework
+						on a delay.
 					</p>
 				</div>
 			</div>
@@ -100,8 +109,9 @@ const faqs = [
 		<section class="section" aria-labelledby="maturity-heading">
 			<h2 id="maturity-heading" class="section-title">The 5-level AI-SDLC maturity model</h2>
 			<p class="section-desc">
-				Most organizations believe they're at level 3. Most are at level 1.
-				Each level is unlocked by a safeguard, not a tool purchase.
+				In discovery conversations, most engineering teams place themselves at level 3. When we
+				look at the evidence together, most are at level 1. The gap matters, because each level is
+				unlocked by a safeguard, not by a tool purchase. Where would you honestly place your teams?
 			</p>
 			<ol class="maturity-ladder">
 				{maturityLevels.map((l) => (
@@ -118,8 +128,9 @@ const faqs = [
 		<section class="section" aria-labelledby="spec-heading">
 			<h2 id="spec-heading" class="section-title">Write the spec once. It does four jobs.</h2>
 			<p class="section-desc">
-				AI made code cheap — which made specs expensive to skip. A precise behavior spec is the
-				contract that turns "plausible" AI output into verifiable engineering.
+				AI has made code cheap to produce. That, in turn, has made specs expensive to skip.
+				A precise behavior spec is the contract that turns plausible AI output into verifiable
+				engineering. Write it once, and it works for you four times over.
 			</p>
 			<div class="spec-grid">
 				{specJobs.map((s) => (
@@ -135,8 +146,10 @@ const faqs = [
 		<section class="section" aria-labelledby="factory-heading">
 			<h2 id="factory-heading" class="section-title">The migration factory</h2>
 			<p class="section-desc">
-				Legacy migration is AI's best enterprise use case: the old system <em>is</em> the specification.
-				A factory beats heroics — repeatable stations, measurable throughput, a quality gate at every step.
+				Legacy migration is the best enterprise use case for AI I have worked on, for a simple
+				reason: the old system <em>is</em> the specification. And a factory beats heroics.
+				Repeatable stations, measurable throughput, and a quality gate at every step turn a
+				multi-year slog into a production line you can manage.
 			</p>
 			<div class="factory-flow" role="img" aria-label="Migration factory pipeline: golden reference, behavior spec, generate, verify, human quality gate">
 				<span class="factory-station">Golden reference</span>
@@ -155,8 +168,9 @@ const faqs = [
 		<section class="section" aria-labelledby="measure-heading">
 			<h2 id="measure-heading" class="section-title">The measurement ladder</h2>
 			<p class="section-desc">
-				If you can't measure it, you bought a demo. Most AI dashboards measure the bottom rung
-				and declare victory — the business case lives at the top.
+				If you cannot measure it, you bought a demo. Most AI dashboards I review measure the
+				bottom rung and declare victory. The business case lives at the top, and climbing the
+				ladder is what separates a tooling rollout from a transformation.
 			</p>
 			<div class="measure-ladder">
 				{measurementRungs.map((r) => (
@@ -187,7 +201,8 @@ const faqs = [
 			<h2 class="section-title">Bring this to your organization</h2>
 			<p class="section-desc">
 				I work with engineering leaders as a consultant and fractional CTO to assess maturity,
-				design the rollout, and hold the measurement seat.
+				design the rollout, and hold the measurement seat. If your organization is starting this
+				journey, or is stuck somewhere in the middle of it, I would love to compare notes.
 			</p>
 			<a href="/contact/?type=consultation" class="cta-button">Schedule A Free Consultation</a>
 		</section>

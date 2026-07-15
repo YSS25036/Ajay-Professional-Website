@@ -5,6 +5,17 @@
 [build.environment]
   NODE_VERSION = "20"
 
+# Redirect hidden Resources page to home (temporary until content is curated)
+[[redirects]]
+  from = "/resources"
+  to = "/"
+  status = 302
+
+[[redirects]]
+  from = "/resources/"
+  to = "/"
+  status = 302
+
 # Ensure /admin serves the Decap CMS page (rewrite so URL stays /admin)
 [[redirects]]
   from = "/admin"

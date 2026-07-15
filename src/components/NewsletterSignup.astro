@@ -7,11 +7,11 @@ const formEndpoint = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT || 'your-form-id'
 		<h2 id="newsletter-heading" class="newsletter-title">Essays on AI-SDLC, straight to your inbox</h2>
 		<p class="newsletter-text">
 			Frameworks and field notes on adopting AI in enterprise software delivery.
-			No schedule, no spam — only when I write.
+			No schedule, no spam. Only when I write.
 		</p>
 		<form class="newsletter-form" action={`https://formspree.io/f/${formEndpoint}`} method="POST">
 			<input type="hidden" name="form-type" value="newsletter-signup" />
-			<input type="hidden" name="_subject" value="New newsletter signup — ajaykmadan.in" />
+			<input type="hidden" name="_subject" value="New newsletter signup - ajaykmadan.in" />
 			<label class="sr-only" for="newsletter-email">Email address</label>
 			<input
 				id="newsletter-email"

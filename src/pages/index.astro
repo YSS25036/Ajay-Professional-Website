@@ -4,11 +4,6 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Testimonial from '../components/Testimonial.astro';
 import NewsletterSignup from '../components/NewsletterSignup.astro';
-import { getCollection } from 'astro:content';
-
-const latestArticles = (await getCollection('resourcesArticles'))
-	.sort((a, b) => (b.data.pubDate?.valueOf() ?? 0) - (a.data.pubDate?.valueOf() ?? 0))
-	.slice(0, 3);
 
 const expertiseAreas = [
 	{
@@ -60,14 +55,14 @@ const projects = [
 ];
 ---
 
-<BaseLayout title="Home" description="Ajay K Madan - AI-SDLC transformation consultant & Fractional CTO. Helping medium and large enterprises adopt AI across the software development lifecycle — fast, measured, and safe. 25 yrs building enterprise products.">
+<BaseLayout title="Home" description="Ajay K Madan - AI-SDLC transformation consultant & Fractional CTO. Helping medium and large enterprises adopt AI across the software development lifecycle: fast, measured, and safe. 25 yrs building enterprise products.">
 	<Header />
 	<main class="main">
 		<section class="hero">
 			<div class="hero-content">
 				<div>
-					<h1 class="hero-title">AI in your SDLC — fast, measured, safe</h1>
-					<p class="hero-text">I help medium and large enterprises transform software delivery with AI — with the specs, quality gates, and measurement that make speed trustworthy</p>
+					<h1 class="hero-title">AI in your SDLC: fast, measured, safe</h1>
+					<p class="hero-text">I help medium and large enterprises transform software delivery with AI, built on the specs, quality gates, and measurement that make speed trustworthy</p>
 					<p class="hero-text">25 years building enterprise-grade products, from early-stage startups to mature global companies</p>
 					<p class="hero-cta-row">
 						<a href="/contact/?type=consultation" class="cta-button">Schedule A Free Consultation</a>
@@ -133,31 +128,6 @@ const projects = [
 				<a href="/projects/key-projects/" class="cta-button">Read more</a>
 			</p>
 		</section>
-
-		{latestArticles.length > 0 && (
-			<section class="section" aria-labelledby="resources-heading">
-				<h2 id="resources-heading" class="section-title">AI & Tech Resources</h2>
-				<p class="section-subtitle">Leaders to follow, articles worth reading, and tools for engineers adopting AI.</p>
-				<div class="insights-grid">
-					{latestArticles.map((article) => {
-						const pubDate = article.data.pubDate ?? new Date();
-						return (
-							<a href={article.data.sourceUrl} target="_blank" rel="noopener noreferrer" class="insight-card">
-								<span class="insight-source">{article.data.source}</span>
-								<h3 class="insight-title">{article.data.title}</h3>
-								<span class="insight-date">
-									{pubDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
-								</span>
-								<span class="insight-cta">Read article →</span>
-							</a>
-						);
-					})}
-				</div>
-				<p class="insights-cta">
-					<a href="/resources/" class="cta-button">View all Resources</a>
-				</p>
-			</section>
-		)}
 
 		<NewsletterSignup />
 
