@@ -37,7 +37,7 @@ const faqs = [
 	},
 	{
 		q: 'Can AI really accelerate legacy migrations?',
-		a: 'Yes. Migrations are the best enterprise use case for AI I have worked on, because the legacy system itself is the specification. A factory pattern (golden reference, behavior spec, generate, verify, human quality gate) makes the work repeatable and measurable instead of heroic.',
+		a: 'Yes. Migrations are the best enterprise use case for AI I have worked on, because the legacy system itself is the specification. A factory pattern makes the work repeatable and measurable instead of heroic: stations for scope, specify, generate, verify, and release, with human sign-off gates at the spec, the verification, and the release.',
 	},
 	{
 		q: 'How do you measure whether AI adoption is actually working?',
@@ -148,19 +148,38 @@ const faqs = [
 			<p class="section-desc">
 				Legacy migration is the best enterprise use case for AI I have worked on, for a simple
 				reason: the old system <em>is</em> the specification. And a factory beats heroics.
-				Repeatable stations, measurable throughput, and a quality gate at every step turn a
-				multi-year slog into a production line you can manage.
+				Repeatable stations and per-station metrics turn a multi-year slog into a production
+				line you can manage.
 			</p>
-			<div class="factory-flow" role="img" aria-label="Migration factory pipeline: golden reference, behavior spec, generate, verify, human quality gate">
-				<span class="factory-station">Golden reference</span>
+			<p class="section-desc">
+				A factory is not one-click automation. People hold three named control gates: spec
+				sign-off before any code is generated, an edge review during verification, and a release
+				approval made on evidence. Between the gates, the work is AI-assisted and instrumented.
+				Agentic autonomy inside a station, human judgment at the gates.
+			</p>
+			<div class="factory-flow" role="img" aria-label="Migration factory pipeline: scope, specify with gate 1 spec sign-off, generate, verify with gate 2 edge review, release with gate 3 release approval">
+				<div class="factory-station">
+					<span class="station-name">Scope</span>
+				</div>
 				<span class="factory-arrow">→</span>
-				<span class="factory-station">Behavior spec</span>
+				<div class="factory-station factory-gated">
+					<span class="station-name">Specify</span>
+					<span class="gate-tag">Gate 1 · Spec sign-off</span>
+				</div>
 				<span class="factory-arrow">→</span>
-				<span class="factory-station">Generate</span>
+				<div class="factory-station">
+					<span class="station-name">Generate</span>
+				</div>
 				<span class="factory-arrow">→</span>
-				<span class="factory-station">Verify</span>
+				<div class="factory-station factory-gated">
+					<span class="station-name">Verify</span>
+					<span class="gate-tag">Gate 2 · Edge review</span>
+				</div>
 				<span class="factory-arrow">→</span>
-				<span class="factory-station factory-gate">Human quality gate</span>
+				<div class="factory-station factory-gated">
+					<span class="station-name">Release</span>
+					<span class="gate-tag">Gate 3 · Release approval</span>
+				</div>
 			</div>
 		</section>
 
@@ -326,24 +345,38 @@ const faqs = [
 
 	.factory-flow {
 		display: flex;
-		align-items: center;
+		align-items: stretch;
 		gap: 0.75rem;
 		flex-wrap: wrap;
 	}
 	.factory-station {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: 0.4rem;
 		background: #f8f9fa;
 		border: 1px solid #e0e0e0;
 		border-radius: 8px;
 		padding: 1rem 1.4rem;
+	}
+	.station-name {
 		font-size: 1.05rem;
 		font-weight: 600;
 		color: #333;
 	}
-	.factory-gate {
+	.factory-gated {
 		border: 2px solid #e67e22;
+	}
+	.gate-tag {
+		font-size: 0.78rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
 		color: #e67e22;
+		white-space: nowrap;
 	}
 	.factory-arrow {
+		align-self: center;
 		color: #e67e22;
 		font-size: 1.4rem;
 		font-weight: 700;

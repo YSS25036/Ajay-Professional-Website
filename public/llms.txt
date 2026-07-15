@@ -12,7 +12,8 @@
   AI-driven speed trustworthy, including in regulated industries such as healthcare
   and finance.
 - Legacy migration acceleration with AI: the "migration factory" pattern of
-  golden reference, behavior spec, generate, verify, and a human quality gate.
+  repeatable stations (scope, specify, generate, verify, release) with human
+  control gates at spec sign-off, verification, and release approval.
 - Spec-driven development: behavior specs as the contract that makes AI output
   verifiable (one spec drives code, tests, review, and documentation).
 - Engineering measurement: a four-rung ladder (cost, usage, quality, outcome)
