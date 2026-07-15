@@ -6,26 +6,31 @@
   NODE_VERSION = "20"
 
 # Redirect hidden AI-SDLC hub to home (on hold until ready to publish)
+# force = true is required: without it Netlify serves the pre-rendered file instead of redirecting
 [[redirects]]
   from = "/ai-sdlc"
   to = "/"
   status = 302
+  force = true
 
 [[redirects]]
-  from = "/ai-sdlc/"
+  from = "/ai-sdlc/*"
   to = "/"
   status = 302
+  force = true
 
 # Redirect hidden Resources page to home (temporary until content is curated)
 [[redirects]]
   from = "/resources"
   to = "/"
   status = 302
+  force = true
 
 [[redirects]]
-  from = "/resources/"
+  from = "/resources/*"
   to = "/"
   status = 302
+  force = true
 
 # Ensure /admin serves the Decap CMS page (rewrite so URL stays /admin)
 [[redirects]]
