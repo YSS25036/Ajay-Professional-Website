@@ -1,6 +1,6 @@
 # Newsletter — Requirements & Provider Decision
 
-Status: **draft for review** (2026-07-18)
+Status: **implemented & verified live** (2026-07-18) — signup → confirm → `/confirmed` tested end-to-end. Outstanding: Formspree import (D2), sender-domain decision (D3).
 Owner: Ajay · Author: Claude Code session
 
 ---
@@ -98,23 +98,25 @@ pushier marketing-tool feel.
 **Rejected — Substack:** it would hollow out the site. The repositioning work (GEO,
 llms.txt, /ai-sdlc hub) assumes ajaykmadan.in is the canonical home of the content.
 
-## 7. Implementation plan (on approval)
+## 7. Implementation plan — status
 
-1. **Ajay (manual, ~10 min):** create Buttondown account, set newsletter name/description,
-   enable double opt-in (default) and new-subscriber notifications, note the username.
-2. Add `PUBLIC_BUTTONDOWN_USERNAME` to `.env` and Netlify env vars.
-3. Rewrite `NewsletterSignup.astro` form action to Buttondown's embed-subscribe endpoint;
-   add hidden `embed=1` and redirect field pointing at `/subscribed`.
-4. Create `src/pages/subscribed.astro` — "Almost there — check your inbox to confirm."
-   Exclude from sitemap.
-5. Delete the empty `src/components/nl-temp.astro` leftover.
-6. One-time: export Formspree submissions CSV, filter `form-type=newsletter-signup`,
+1. ✅ Buttondown account `ajaykmadan` created; description set to complete the
+   confirmation-email sentence ("Ajay Madan is: a fractional CTO writing…"). Double
+   opt-in is Buttondown's default and cannot be disabled — nothing to configure.
+2. ✅ `PUBLIC_BUTTONDOWN_USERNAME` in `.env`; component falls back to `ajaykmadan`
+   so the Netlify env var is optional.
+3. ✅ Form posts to the embed-subscribe endpoint. Note: redirects are **not** form
+   fields — they are set in Buttondown Settings → Subscribing → Redirects
+   (After subscribing → `https://ajaykmadan.in/subscribed/`, After confirming →
+   `https://ajaykmadan.in/confirmed/`).
+4. ✅ `/subscribed` and `/confirmed` pages live, excluded from sitemap.
+5. ✅ `nl-temp.astro` removed.
+6. ⬜ One-time: export Formspree submissions CSV, filter `form-type=newsletter-signup`,
    import into Buttondown (per Open decision D2).
-7. Verify: `npm run build`, live signup test end-to-end (form → confirm email → list →
-   test send → unsubscribe link).
-8. Document the publishing runbook in this file (§8) once verified.
+7. ✅ Verified live 2026-07-18: signup form → `/subscribed` → confirmation email →
+   confirm → `/confirmed` → subscriber visible in dashboard.
 
-## 8. Publishing runbook (target state)
+## 8. Publishing runbook
 
 1. Write/commit the article in `src/content/blog/` or `src/content/resourcesArticles/`
    as usual; push → Netlify deploys it.
