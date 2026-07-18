@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout title="You're in" description="Subscription confirmed - essays on AI-SDLC and enterprise software delivery from Ajay K Madan.">
+	<Header />
+	<main class="main">
+		<section class="confirmed">
+			<h1>You're in. Thank you.</h1>
+			<p>
+				Your subscription is confirmed. Frameworks and field notes on adopting AI in
+				enterprise software delivery will land in your inbox — no schedule, no spam,
+				only when I write.
+			</p>
+			<p class="confirmed-note">
+				In the meantime, you might enjoy the <a href="/blog">blog</a> or the
+				<a href="/projects/key-projects">key projects</a> I've led.
+			</p>
+			<a class="confirmed-back" href="/">&larr; Back to the site</a>
+		</section>
+	</main>
+	<Footer />
+</BaseLayout>
+
+<style>
+	.confirmed {
+		max-width: 640px;
+		margin: 4rem auto;
+		padding: 2.5rem 2rem;
+		background: #f8f9fa;
+		border-radius: 8px;
+		border-left: 4px solid #e67e22;
+	}
+	.confirmed h1 {
+		font-size: 1.8rem;
+		color: #1a1a1a;
+		margin: 0 0 1rem;
+	}
+	.confirmed p {
+		font-size: 1.1rem;
+		line-height: 1.6;
+		color: #555;
+		margin: 0 0 1rem;
+	}
+	.confirmed-note {
+		font-size: 0.95rem;
+	}
+	.confirmed-back {
+		display: inline-block;
+		margin-top: 0.5rem;
+		color: #e67e22;
+		font-weight: 600;
+		text-decoration: none;
+	}
+	.confirmed-back:hover {
+		text-decoration: underline;
+	}
+</style>

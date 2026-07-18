@@ -1,5 +1,5 @@
 ---
-const formEndpoint = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT || 'your-form-id';
+const buttondownUsername = import.meta.env.PUBLIC_BUTTONDOWN_USERNAME || 'ajaykmadan';
 ---
 
 <section class="newsletter" aria-labelledby="newsletter-heading">
@@ -9,9 +9,8 @@ const formEndpoint = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT || 'your-form-id'
 			Frameworks and field notes, straight to your inbox.
 			No schedule, no spam. Only when I write.
 		</p>
-		<form class="newsletter-form" action={`https://formspree.io/f/${formEndpoint}`} method="POST">
-			<input type="hidden" name="form-type" value="newsletter-signup" />
-			<input type="hidden" name="_subject" value="New newsletter signup - ajaykmadan.in" />
+		<form class="newsletter-form" action={`https://buttondown.com/api/emails/embed-subscribe/${buttondownUsername}`} method="POST">
+			<input type="hidden" name="embed" value="1" />
 			<label class="sr-only" for="newsletter-email">Email address</label>
 			<input
 				id="newsletter-email"

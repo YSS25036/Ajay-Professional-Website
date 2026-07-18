@@ -7,8 +7,12 @@ export default defineConfig({
 	site: 'https://ajaykmadan.in',
 	integrations: [
 		sitemap({
-			// Hidden pages (redirected away in netlify.toml) stay out of the sitemap
-			filter: (page) => !page.includes('/ai-sdlc') && !page.includes('/resources'),
+			// Hidden pages (redirected away in netlify.toml) and utility pages stay out of the sitemap
+			filter: (page) =>
+				!page.includes('/ai-sdlc') &&
+				!page.includes('/resources') &&
+				!page.includes('/subscribed') &&
+				!page.includes('/confirmed'),
 		}),
 	],
 });

@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout title="Almost there" description="Confirm your email to finish subscribing to Ajay K Madan's newsletter on AI-SDLC and enterprise software delivery.">
+	<Header />
+	<main class="main">
+		<section class="subscribed">
+			<h1>Almost there — check your inbox</h1>
+			<p>
+				I've sent a confirmation email to the address you entered.
+				Click the link in it to finish subscribing.
+			</p>
+			<p class="subscribed-note">
+				Nothing arriving? Check your spam folder, or write to me via the
+				<a href="/contact">contact page</a>.
+			</p>
+			<a class="subscribed-back" href="/">&larr; Back to the site</a>
+		</section>
+	</main>
+	<Footer />
+</BaseLayout>
+
+<style>
+	.subscribed {
+		max-width: 640px;
+		margin: 4rem auto;
+		padding: 2.5rem 2rem;
+		background: #f8f9fa;
+		border-radius: 8px;
+		border-left: 4px solid #e67e22;
+	}
+	.subscribed h1 {
+		font-size: 1.8rem;
+		color: #1a1a1a;
+		margin: 0 0 1rem;
+	}
+	.subscribed p {
+		font-size: 1.1rem;
+		line-height: 1.6;
+		color: #555;
+		margin: 0 0 1rem;
+	}
+	.subscribed-note {
+		font-size: 0.95rem;
+	}
+	.subscribed-back {
+		display: inline-block;
+		margin-top: 0.5rem;
+		color: #e67e22;
+		font-weight: 600;
+		text-decoration: none;
+	}
+	.subscribed-back:hover {
+		text-decoration: underline;
+	}
+</style>
