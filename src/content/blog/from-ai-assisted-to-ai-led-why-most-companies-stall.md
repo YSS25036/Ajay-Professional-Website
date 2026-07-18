@@ -4,7 +4,7 @@ description: "Executives expect 5-10x gains from AI-led development, yet most AI
 date: 2026-07-18
 categories:
   - "blog"
-coverImage: "chasm-ai-assisted-to-ai-led.png"
+coverImage: "chasm-ai-assisted-to-ai-led-v2.png"
 ---
 
 Executives expect 5-10x gains, leaders are publishing eye-watering adoption numbers, so why do most companies' AI efforts stall after the pilot or after the initial rollouts?
