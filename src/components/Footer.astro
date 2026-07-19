@@ -1,9 +1,15 @@
-<footer class="footer">
-	<p class="credits">
-		Images credit: <a href="https://www.adobe.com/express/" target="_blank" rel="noopener">new.adobe.express.com</a> |
-		Icons credit: <a href="https://icons8.com" target="_blank" rel="noopener">icons8.com</a>
-	</p>
-</footer>
+---
+const showCredits = !Astro.url.pathname.startsWith('/blog');
+---
+
+{showCredits && (
+	<footer class="footer">
+		<p class="credits">
+			Images credit: <a href="https://www.adobe.com/express/" target="_blank" rel="noopener">new.adobe.express.com</a> |
+			Icons credit: <a href="https://icons8.com" target="_blank" rel="noopener">icons8.com</a>
+		</p>
+	</footer>
+)}
 
 <style>
 	.footer {
