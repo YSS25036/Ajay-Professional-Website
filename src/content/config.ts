@@ -8,6 +8,7 @@ const blog = defineCollection({
 			description: z.string().optional(),
 			pubDate: z.coerce.date().optional(),
 			date: z.coerce.date().optional(),
+			updatedDate: z.coerce.date().optional(),
 			thumbnail: z.string().optional(),
 			coverImage: z.string().optional(),
 		})
@@ -15,6 +16,7 @@ const blog = defineCollection({
 			title: data.title,
 			description: data.description,
 			pubDate: data.pubDate ?? data.date ?? new Date(),
+			updatedDate: data.updatedDate,
 			thumbnail: data.thumbnail ?? data.coverImage,
 			coverImage: data.coverImage ?? data.thumbnail,
 		})),

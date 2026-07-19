@@ -24,6 +24,14 @@ const { Content } = await post.render();
 			<time datetime={post.data.pubDate.toISOString()}>
 				{post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
 			</time>
+			{post.data.updatedDate && (
+				<p class="updated">
+					Last updated{' '}
+					<time datetime={post.data.updatedDate.toISOString()}>
+						{post.data.updatedDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+					</time>
+				</p>
+			)}
 			{(post.data.coverImage || post.data.thumbnail) && (
 				<img
 					src={`/images/blog/${post.data.coverImage || post.data.thumbnail}`}
@@ -58,6 +66,15 @@ const { Content } = await post.render();
 		font-size: 0.9rem;
 		color: #666;
 		margin-bottom: 2rem;
+	}
+	.main .updated {
+		font-size: 0.9rem;
+		color: #666;
+		margin: -1.5rem 0 2rem;
+	}
+	.main .updated time {
+		display: inline;
+		margin: 0;
 	}
 	.content {
 		line-height: 1.7;
