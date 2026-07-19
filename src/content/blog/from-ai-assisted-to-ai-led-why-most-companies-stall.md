@@ -29,13 +29,13 @@ One client conversation captured this perfectly for me. The company had shipped 
 
 ### The three reasons companies stall
 
-So why do companies stall at AI-assisted instead of moving to AI-led? From my consulting conversations, I see three reasons.
+So why do companies stall at AI-assisted instead of moving to AI-led? From my consulting conversations, I see three reasons:
 
-First, awareness: most leaders have not seen what real agentic capabilities look like, and the market noise makes it worse (Gartner estimates only about 130 of the thousands of vendors claiming "agentic AI" actually are).
+First, **awareness**: most leaders have not seen what real agentic capabilities look like, and the market noise makes it worse (Gartner estimates only about 130 of the thousands of vendors claiming "agentic AI" actually are).
 
-Second, safeguards: few realize that guardrails, permissions, quality gates and audit trails can be engineered into agent workflows. Deloitte found only 21% of organizations have mature governance for agentic AI, and in my experience the other 79% mostly do not know such governance is even possible.
+Second, **safeguards**: few realize that guardrails, permissions, quality gates and audit trails can be engineered into agent workflows. Deloitte found only 21% of organizations have mature governance for agentic AI, and in my experience the other 79% mostly do not know such governance is even possible.
 
-Third, in regulated industries (where most of my experience lies) there is a real fear that autonomous change will outrun internal change management procedures and expose compliance risk. The fear is lack of control, and it is legitimate. But the answer is not to wait; it is to build the controls that make speed safe.
+Third, in **regulated** industries (where most of my experience lies) there is a real fear that autonomous change will outrun internal change management procedures and expose compliance risk. The fear is lack of control, and it is legitimate. But the answer is not to wait; it is to build the controls that make speed safe.
 
 ### Redesign the whole, don't retrofit the parts
 
@@ -55,13 +55,13 @@ I like this part of the Bain article, to quote verbatim: "This shift is redefini
 
 I have seen successful transformations in the past, like Agile software development, SaaS, and DevOps: the more you look at them as a change to overall organization behavior and a new vocabulary, the higher your chances of getting the transformation deep and enabling disproportionate business outcomes. This is true for the transformation to AI-led as well and, to quote Bain, "engineering excellence is no longer defined by how fast teams can code but by how effectively the entire organization can learn, adapt, and deliver at the pace AI now makes possible."
 
-Last but not least, it's human beings ultimately who enable and orchestrate such transformations. Leadership needs to use empathy, provide psychological safety, and take people along; this is as critical as any of the methods we discussed above. In my conversations, as recently as a fortnight ago, I still see teams carrying fear towards such transformations, which usually signals a mismanaged change management exercise. The Kübler-Ross change curve is as relevant as ever and should not be ignored by leaders. The leaders who get this right do not mandate adoption; they instrument one lane, publish the real internal numbers, and let the results do the persuading. *Mandates create compliance theater; measured proof creates pull.*
+Last but not least, it's human beings ultimately who enable and orchestrate such transformations. Leadership needs to use empathy, provide psychological safety, and take people along; this is as critical as any of the methods we discussed above. In my conversations, as recently as a fortnight ago, I still see teams carrying fear towards such transformations, which usually signals a mismanaged change management exercise. The **Kübler-Ross change curve** is as relevant as ever and should not be ignored by leaders. The leaders who get this right do not mandate adoption; they instrument one lane, publish the real internal numbers, and let the results do the persuading. *Mandates create compliance theater; measured proof creates pull.*
 
 In closing, getting to AI-assisted was the easy part, and you have likely done it. Bridging to AI-led means building the guardrails, safeguards, audit trails, and trackable controls that make speed safe, because autonomy is earned by instrumentation, never assumed. Crossing that chasm is the work of designing and implementing that governance, and orchestrating humans in the loop who keep defining what good looks like at each gate.
 
 As Bain puts it, what happens next will separate incremental adopters from true leaders.
 
-What has been your experience observing this in your own organization, AI-assisted or moved into AI-led? Do you see AI used in specific parts of the workflow or are you starting to see fundamentally different workflows getting designed, including team configuration? I would love to hear from you, leave a comment or reach out.
+What has been your experience observing this in your own organization, AI-assisted or moved into AI-led? Do you see AI used in specific parts of the workflow or are you starting to see fundamentally different workflows getting designed, including team configuration? I would love to hear from you - [reach out](/contact).
 
 Resources:
 

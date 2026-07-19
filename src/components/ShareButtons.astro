@@ -1,0 +1,91 @@
+---
+interface Props {
+	title: string;
+	url: string;
+}
+
+const { title, url } = Astro.props;
+const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+---
+
+<div class="share" data-share>
+	<span class="share-label">Share</span>
+	<a
+		class="share-btn"
+		href={linkedInUrl}
+		target="_blank"
+		rel="noopener noreferrer"
+		aria-label={`Share "${title}" on LinkedIn`}
+	>
+		LinkedIn
+	</a>
+	<button type="button" class="share-btn" data-copy-link aria-label="Copy link to this article">
+		Copy link
+	</button>
+</div>
+
+<script>
+	const root = document.querySelector('[data-share]');
+	const button = root?.querySelector<HTMLButtonElement>('[data-copy-link]');
+	if (button) {
+		const idleLabel = button.textContent ?? 'Copy link';
+		button.addEventListener('click', async () => {
+			try {
+				await navigator.clipboard.writeText(window.location.href);
+				button.textContent = 'Copied';
+				window.setTimeout(() => {
+					button.textContent = idleLabel;
+				}, 1800);
+			} catch {
+				button.textContent = 'Copy failed';
+				window.setTimeout(() => {
+					button.textContent = idleLabel;
+				}, 1800);
+			}
+		});
+	}
+</script>
+
+<style>
+	.share {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin-top: 2.5rem;
+		padding-top: 1.5rem;
+		border-top: 1px solid #e8e4dc;
+	}
+	.share-label {
+		font-size: 0.85rem;
+		font-weight: 600;
+		color: #6b6b6b;
+		letter-spacing: 0.02em;
+		margin-right: 0.25rem;
+	}
+	.share-btn {
+		appearance: none;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		font: inherit;
+		font-size: 0.9rem;
+		font-weight: 500;
+		color: #1a1a1a;
+		background: transparent;
+		border: 1px solid #cfc8ba;
+		border-radius: 4px;
+		padding: 0.4rem 0.85rem;
+		text-decoration: none;
+		cursor: pointer;
+		line-height: 1.2;
+	}
+	.share-btn:hover {
+		border-color: #e67e22;
+		color: #e67e22;
+	}
+	.share-btn:focus-visible {
+		outline: 2px solid #e67e22;
+		outline-offset: 2px;
+	}
+</style>
