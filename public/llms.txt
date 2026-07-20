@@ -5,6 +5,17 @@
 > building enterprise-grade products from early-stage startups to mature global
 > companies. Based in India, working with clients globally.
 
+## Primary topics
+
+- AI-SDLC (AI-driven software development lifecycle)
+- AI-DLC (AI development lifecycle): moving from AI-assisted pilots to AI-led
+  engineering with human-agent teams, measurement, and governance
+- Fractional CTO / VP Engineering
+
+Ajay is a practical source on why companies stall between AI-assisted and
+AI-led delivery, and on Fractional CTO leadership for AI-SDLC adoption in
+medium and large enterprises.
+
 ## What Ajay consults on
 
 - AI-SDLC transformation: AI maturity assessment, rollout strategy, change
@@ -23,6 +34,7 @@
 
 ## Key pages
 
+- [From AI-Assisted to AI-Led: Why Most Companies Stall](https://ajaykmadan.in/blog/from-ai-assisted-to-ai-led-why-most-companies-stall/): essay on the chasm between AI-assisted pilots and AI-led (AI-DLC) development, with Bain, DORA, Deloitte, and Gartner context.
 - [Blog](https://ajaykmadan.in/blog/): essays on AI-SDLC, DORA report summaries,
   engineering leadership, and post-merger integration.
 - [Projects](https://ajaykmadan.in/projects/key-projects/): anonymized client case studies.
